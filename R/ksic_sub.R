@@ -12,7 +12,7 @@ ksic_sub <- function(ksic, digit=5, C=10, name=F){
     stop(paste0("digit of 'ksic' must be unique."))
   }else if(sum(unique(nchar(ksic)) >= p_d) != 0){
     stop("ksic의 digit이 digit과 같거나 더 큽니다.")
-  } else if(sum(ksic %in% ksicDB[ksicDB$ksic_C==paste0("C",p_C),]$ksic_cd) != length(ksic)){
+  } else if(sum(ksic %in% ksicDB[ksicDB$ksic_C==paste0("C",p_C),]$cd) != length(ksic)){
     stop(paste0("ksic가 ",C,"차에 없습니다."))
   } else{
     z <- ksicTreeDB[ksicTreeDB$ksic_C==paste0("C",p_C),]
