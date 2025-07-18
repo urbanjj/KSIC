@@ -3,23 +3,23 @@
 
 # KSIC
 
-<!-- badges: start -->
-<!-- badges: end -->
+This package provides tools to utilize the Korea Standard Industrial
+Classification (KSIC) in R.
 
-R에서 한국표준산업분류(KSIC)를 이용하기 위한 패키지입니다. KSIC
-패키지에서 제공하고자 하는 기능은 다음과 같습니다.
+R에서 한국표준산업분류(KSIC)를 이용하기 위한 패키지입니다.
 
--   Data: **ksicDB**, **ksic_9\_to_10**, **ksic_10_to_9**
--   Function: **ksic()**, **is_ksic()**, **ksic_sub()**,
-    **ksic_group()**
+- Data: **ksicDB**, **ksicTreeDB**, **ksic_9_to_10**, **ksic_10_to_9**
+- Function: **ksic()**, **is_ksic()**, **ksic_group()**, **ksic_sub()**
 
-데이터의 출처는 아래와 같습니다.
+The data is sourced from: 데이터의 출처는 아래와 같습니다.
 
--   [통계분류포털](https://kssc.kostat.go.kr)
+- [Korea Statistical Classification Portal
+  (통계분류포털)](https://kssc.kostat.go.kr)
 
 ## Installation
 
-KSIC package는 아래와 같이 설치할 수 있습니다.
+You can install the KSIC package from GitHub with: KSIC package는 아래와
+같이 설치할 수 있습니다.
 
 ``` r
 # install.packages("devtools")
@@ -28,150 +28,237 @@ devtools::install_github("jjyunnn/KSIC")
 
 ------------------------------------------------------------------------
 
-## 데이터의 구조
+## Core Functions / 주요 함수
 
-**ksic_db**의 메타데이터는 다음과 같습니다.
+This package offers four main functions designed for efficiency and
+flexibility. 이 패키지는 효율성과 유연성을 고려하여 설계된 네 가지 주요
+함수를 제공합니다.
 
-| 이름    | 한글명                | 데이터 유형 | 세부내용                                                     |
-|---------|-----------------------|-------------|--------------------------------------------------------------|
-| ksic_C  | 한국표준산업분류 차수 | character   | “C9”=9차, “C10”=10차                                         |
-| ksic_cd | 분류코드              | character   |                                                              |
-| ksic_nm | 분류명                | character   |                                                              |
-| digit   | 분류체계              | integer     | 1=“대분류”, 2=“중분류”, 3=“소분류”, 4=“세분류”, 5=“세세분류” |
+### `ksic()`
 
-**ksic_9\_to_10**, **ksic_10_to_9**는 9차와 10차 간 연계하기위한
-표입니다.
+Retrieves a `data.frame` of KSIC data filtered by a specific revision
+and digit level. 특정 차수와 자릿수 수준으로 필터링된 KSIC
+데이터프레임을 가져옵니다.
+
+**Example / 사용 예시:**
+
+``` r
+library(KSIC)
+ksic(digit = 1, C = 10)
+#>      cd                                                               nm digit
+#> 1958  A                                        농업, 임업 및 어업(01~03)     1
+#> 1959  B                                                      광업(05~08)     1
+#> 1960  C                                                    제조업(10~34)     1
+#> 1961  D                         전기, 가스, 증기 및 공기 조절 공급업(35)     1
+#> 1962  E                    수도, 하수 및 폐기물 처리, 원료 재생업(36~39)     1
+#> 1963  F                                                    건설업(41~42)     1
+#> 1964  G                                            도매 및 소매업(45~47)     1
+#> 1965  H                                            운수 및 창고업(49~52)     1
+#> 1966  I                                          숙박 및 음식점업(55~56)     1
+#> 1967  J                                                정보통신업(58~63)     1
+#> 1968  K                                            금융 및 보험업(64~66)     1
+#> 1969  L                                                     부동산업(68)     1
+#> 1970  M                               전문, 과학 및 기술 서비스업(70~73)     1
+#> 1971  N                 사업시설 관리, 사업 지원 및 임대 서비스업(74~76)     1
+#> 1972  O                             공공 행정, 국방 및 사회보장 행정(84)     1
+#> 1973  P                                                교육 서비스업(85)     1
+#> 1974  Q                               보건업 및 사회복지 서비스업(86~87)     1
+#> 1975  R                         예술, 스포츠 및 여가관련 서비스업(90~91)     1
+#> 1976  S                  협회 및 단체, 수리 및 기타 개인 서비스업(94~96)     1
+#> 1977  T 가구 내 고용활동 및 달리 분류되지 않은 자가 소비 생산활동(97~98)     1
+#> 1978  U                                             국제 및 외국기관(99)     1
+#>      ksic_C
+#> 1958    C10
+#> 1959    C10
+#> 1960    C10
+#> 1961    C10
+#> 1962    C10
+#> 1963    C10
+#> 1964    C10
+#> 1965    C10
+#> 1966    C10
+#> 1967    C10
+#> 1968    C10
+#> 1969    C10
+#> 1970    C10
+#> 1971    C10
+#> 1972    C10
+#> 1973    C10
+#> 1974    C10
+#> 1975    C10
+#> 1976    C10
+#> 1977    C10
+#> 1978    C10
+```
+
+### `is_ksic()`
+
+Checks whether input codes are valid KSIC codes for the 9th and 10th
+revisions. 입력된 코드가 9차 및 10차 KSIC에서 유효한 코드인지
+확인합니다.
+
+**Example / 사용 예시:**
+
+``` r
+is_ksic(c("A", "01", "99999", "invalid_code"))
+#>          input   C10    C9
+#> 1            A  TRUE  TRUE
+#> 2           01  TRUE  TRUE
+#> 3        99999 FALSE FALSE
+#> 4 invalid_code FALSE FALSE
+```
+
+### `ksic_group()`
+
+Extracts the parent (upper-level) classification codes or names for a
+vector of KSIC codes. 주어진 KSIC 코드 벡터에 대한 상위 분류 코드 또는
+이름을 추출합니다.
+
+**Key Features & Advantages / 주요 특징 및 장점:** - **Flexible Input**:
+Handles vectors with mixed-digit codes (e.g., `c("011", "2622")`). -
+**유연한 입력**: 자릿수가 다른 코드들이 섞인 벡터(예:
+`c("011", "2622")`)도 처리할 수 있습니다. - **Efficient**: Uses an
+optimized `split-lapply-unsplit` pattern for fast lookups. - **효율성**:
+최적화된 `split-lapply-unsplit` 패턴을 사용하여 빠른 조회를 보장합니다.
+
+**Example / 사용 예시:**
+
+``` r
+ksic_group(c("31311", "4631", "25"), digit = 2, name = TRUE)
+#> [1] "기타 운송장비 제조업"                   
+#> [2] "도매 및 상품 중개업"                    
+#> [3] "금속 가공제품 제조업; 기계 및 가구 제외"
+```
+
+### `ksic_sub()`
+
+Extracts all child (lower-level) classification codes or names for a
+vector of KSIC codes. 주어진 KSIC 코드 벡터에 대한 모든 하위 분류 코드
+또는 이름을 추출합니다.
+
+**Key Features & Advantages / 주요 특징 및 장점:** - **Comprehensive
+Output**: Returns a `list` where each element contains a vector of child
+codes. - **포괄적인 출력**: 각 입력 코드에 해당하는 하위 코드 벡터를
+담은 `리스트`를 반환합니다. - **Flexible Input**: Handles vectors with
+mixed-digit codes. - **유연한 입력**: 자릿수가 다른 코드가 섞인 벡터도
+처리합니다.
+
+**Example / 사용 예시:**
+
+``` r
+result_list <- ksic_sub(c("26","96"), digit = 4)
+print(result_list)
+#> $`26`
+#>  [1] "2660" "2611" "2612" "2621" "2641" "2642" "2651" "2652" "2632" "2622"
+#> [11] "2629" "2631"
+#> 
+#> $`96`
+#> [1] "9611" "9612" "9691" "9692" "9699"
+```
 
 ------------------------------------------------------------------------
 
-## 주요 함수
+## Practical Application / 활용 사례
 
--   **ksic(digit=5,C=10)**: ksic 코드를 불러옵니다.
-    -   digit(integer): 추출하고자 하는 sub digit (기본값=5)
-    -   C(integer): KSIC차수 9 또는 10 (기본값=10)
+### Enriching a Dataset with `ksic_group`
 
-<!-- -->
+You can easily use `ksic_group` to enrich your dataset by adding parent
+classifications. `ksic_group`을 사용해 상위 분류 정보를 추가하여
+데이터셋을 쉽게 확장할 수 있습니다.
 
-    > ksic(1)
-       ksic_cd                                          ksic_nm digit ksic_C
-    1        A                        농업, 임업 및 어업(01~03)     1    C10
-    2        B                                      광업(05~08)     1    C10
-    3        C                                    제조업(10~34)     1    C10
-    4        D         전기, 가스, 증기 및 공기 조절 공급업(35)     1    C10
-    5        E    수도, 하수 및 폐기물 처리, 원료 재생업(36~39)     1    C10
-    6        F                                    건설업(41~42)     1    C10
+``` r
+my_data <- data.frame(
+  company = c("A", "B", "C", "D"),
+  ksic5_cd = c("26222", "58221", "26299", "61220")
+)
 
--   **is_ksic(x)**: x가 ksic코드에 있는지 여부를 반환합니다.
+my_data$ksic2_nm <- ksic_group(my_data$ksic5_cd, digit = 2, name = TRUE)
+print(my_data)
+#>   company ksic5_cd                                         ksic2_nm
+#> 1       A    26222 전자 부품, 컴퓨터, 영상, 음향 및 통신장비 제조업
+#> 2       B    58221                                           출판업
+#> 3       C    26299 전자 부품, 컴퓨터, 영상, 음향 및 통신장비 제조업
+#> 4       D    61220                                   우편 및 통신업
+```
 
-<!-- -->
+### Finding All Sub-Industries with `ksic_sub`
 
-    > is_ksic("A")
-      input  C10   C9
-    1     A TRUE TRUE
+`ksic_sub` is useful for identifying all specific industries within a
+broader category. The list output can be easily converted into a tidy
+data frame for further analysis. `ksic_sub`는 특정 상위 분류에 속하는
+모든 세부 산업을 찾아낼 때 유용합니다. 리스트 형태의 출력 결과는 추가
+분석을 위해 데이터프레임으로 쉽게 변환할 수 있습니다.
 
-    > is_ksic("1")
-      input   C10    C9
-    1     1 FALSE FALSE
+``` r
+# 분석할 중분류 코드 정의
+# Define mid-level divisions for analysis
+target_divisions <- c("58", "61") # 출판업, 우편 및 통신업
 
--   **ksic_sub(ksic, digit, C, name = F)**: 입력된 ksic에 대하여 digit에
-    해당하는 하위분류를 추출합니다. (output: vector)
-    -   ksic(character): ksic 코드 (예. “30”)
-    -   digit(integer): 추출하고자 하는 sub digit (기본값=5)
-    -   C(integer): KSIC차수 9 또는 10 (기본값=10)
-    -   name(logical): T or F (기본값 = F)
-        -   TRUE: ksic 이름을 return합니다. (vector)
-        -   FALSE: ksic 코드를 return합니다. (vector)
+# ksic_sub를 사용하여 세세분류(5-digit) 코드와 코드명 찾기
+# Use ksic_sub to find all 5-digit sub-category codes and names
+sub_codes_list <- ksic_sub(target_divisions, digit = 5, name = FALSE)
+sub_names_list <- ksic_sub(target_divisions, digit = 5, name = TRUE)
 
-<!-- -->
+# --- Base R Approach ---
+# Base R을 사용하여 리스트를 데이터프레임으로 변환
+# Convert the list to a data.frame using Base R
+sub_categories_df_base <- data.frame(
+  ksic2_cd = rep(names(sub_codes_list), lengths(sub_codes_list)),
+  ksic5_cd = unlist(sub_codes_list, use.names = FALSE),
+  ksic5_nm = unlist(sub_names_list, use.names = FALSE)
+)
+cat("--- Using Base R ---\n")
+#> --- Using Base R ---
+print(head(sub_categories_df_base))
+#>   ksic2_cd ksic5_cd                   ksic5_nm
+#> 1       58    58112                만화 출판업
+#> 2       58    58113           일반 서적 출판업
+#> 3       58    58121                신문 발행업
+#> 4       58    58111 교과서 및 학습 서적 출판업
+#> 5       58    58123    정기 광고 간행물 발행업
+#> 6       58    58190         기타 인쇄물 출판업
 
-    x <- c(sample(ksic(3)$ksic_cd[50:55], 3, replace = T))
-    > x
-    [1] "205" "211" "205"
-    > ksic_sub(x,5)
-    [1] "20501" "20502" "21101" "21102" "20501" "20502"
-    > ksic_sub(x,5, name = T)
-    [1] "합성섬유 제조업"                 
-    [2] "재생 섬유 제조업"                
-    [3] "의약용 화합물 및 항생물질 제조업"
-    [4] "생물학적 제제 제조업"            
-    [5] "합성섬유 제조업"                 
-    [6] "재생 섬유 제조업"     
+# --- Tidyverse Approach ---
+# A more concise approach using the tidyverse (tidyr, tibble)
+# tidyverse(tidyr, tibble)를 사용한 방법 (더 간결함)
+# if (!require(tidyr)) install.packages("tidyr") 
+# if (!require(tibble)) install.packages("tibble")
 
--   **ksic_group(ksic, digit, C, name = F)**: 입력된 ksic에 대하여
-    digit에 해당하는 상위분류를 추출합니다. (output: vector)
-    -   ksic(character): ksic 코드 (예. “30”)
-    -   digit(integer): 추출하고자 하는 상위 또는 같은 digit (기본값=1)
-    -   C(integer): KSIC차수 9 또는 10 (기본값=10)
-    -   name(logical): T or F (기본값 = F)
-        -   TRUE: ksic 이름을 return합니다. (vector)
-        -   FALSE: ksic 코드를 return합니다. (vector)
+cat("\n--- Using Tidyverse ---\n")
+#> 
+#> --- Using Tidyverse ---
 
-<!-- -->
+# 1. Create a nested tibble where some columns are lists
+# 1. 리스트를 열로 포함하는 중첩된 tibble 생성
+nested_tibble <- tibble::tibble(
+    ksic2_cd = names(sub_codes_list),
+    ksic5_cd = sub_codes_list,
+    ksic5_nm = sub_names_list
+)
+cat("\nStep 1: Nested tibble (before unnesting)\n")
+#> 
+#> Step 1: Nested tibble (before unnesting)
+print(nested_tibble)
+#> # A tibble: 2 × 3
+#>   ksic2_cd ksic5_cd     ksic5_nm    
+#>   <chr>    <named list> <named list>
+#> 1 58       <chr [12]>   <chr [12]>  
+#> 2 61       <chr [5]>    <chr [5]>
 
-    x <- c(sample(ksic(5)$ksic_cd, 10, replace = T))
-    > x
-     [1] "31311" "28114" "90199" "75912" "46313" "07210" "72922"
-     [8] "47119" "60100" "42412"
-    > ksic_group(x,1)
-     [1] "C" "C" "R" "N" "G" "B" "M" "G" "J" "F"
-    > ksic_group(x,1,name=T)
-     [1] "제조업(10~34)"                                   
-     [2] "제조업(10~34)"                                   
-     [3] "예술, 스포츠 및 여가관련 서비스업(90~91)"        
-     [4] "사업시설 관리, 사업 지원 및 임대 서비스업(74~76)"
-     [5] "도매 및 소매업(45~47)"                           
-     [6] "광업(05~08)"                                     
-     [7] "전문, 과학 및 기술 서비스업(70~73)"              
-     [8] "도매 및 소매업(45~47)"                           
-     [9] "정보통신업(58~63)"                               
-    [10] "건설업(41~42)"       
-
-    x <- data.frame(ksic5=c('26222', '26223', '26299', '26429', '58221', '58222', '61220', '61299'))
-    dplyr::mutate(x, ksic2_cd = ksic_group(ksic5,2),
-                     ksic2_nm = ksic_group(ksic5,2,name=T))
-      ksic5 ksic2_cd                                         ksic2_nm
-    1 26222       26 전자 부품, 컴퓨터, 영상, 음향 및 통신장비 제조업
-    2 26223       26 전자 부품, 컴퓨터, 영상, 음향 및 통신장비 제조업
-    3 26299       26 전자 부품, 컴퓨터, 영상, 음향 및 통신장비 제조업
-    4 26429       26 전자 부품, 컴퓨터, 영상, 음향 및 통신장비 제조업
-    5 58221       58                                           출판업
-    6 58222       58                                           출판업
-    7 61220       61                                   우편 및 통신업
-    8 61299       61                                   우편 및 통신업
-
-## 분류연계표
-
-### 해설서
-
--   분류연계표(9차와 10차 간)를 읽는 방법은 다음과 같음
--   신구연계표 (ksic10 → ksic9)
-    -   왼쪽(ksic10), 오른쪽(ksic9)
-    -   ’연계(con)’는 9차의 분할여부와 분할 개수를 의미함
-        -   1: 분할되지 않을 경우
-        -   2이상의 값: 2개 이상 세세분류로 분할될 경우
-    -   ’세부설명(detail)’은 10차와 연계되는 9차의 포괄범위를 기재
-    -   연계(con) 혹은 세부설명(detail)이 공란 → 9차 항목 전체가
-        포괄범위
-
-> 예시1) 신구연계표의 연계 값이 3인 9차 세세분류 ㄱ: 9차 세세분류 ㄱ은
-> 3개의 10차 세세분류로 분할
-
-| ksic10_cd | ksic10_nm | ksic9_cd | ksic9_nm                | con | detail                   |
-|-----------|-----------|----------|-------------------------|-----|--------------------------|
-| 96122     | 마사지업  | 96122    | 마사지업                | 1   | 발, 스포츠 마사지업 포함 |
-| 96122     | 마사지업  | 96129    | 기타 미용 관련 서비스업 | 2   | 발, 스포츠 마사지업 포함 |
-
--   구신연계표 (ksic9 → ksic10)
-    -   ’연계(con)’는 10차의 분할여부와 분할 개수를 의미함
-        -   1: 분할되지 않을 경우
-        -   2이상의 값: 2개 이상 세세분류로 분할될 경우
-    -   ’세부설명(detail)’은 9차와 연계되는 10차의 포괄범위를 기재
-    -   연계(con) 혹은 세부설명(detail)이 공란 → 9차 전체가 포괄범위
-
-> 예시2) 구신연계표의 연계 값이 2인 10차 세세분류 ㄴ: 10차 세세분류 ㄴ은
-> 2개의 9차 세세분류로 분할
-
-| ksic9_cd | ksic9_nm               | ksic10_cd | ksic10_nm | con | detail                   |
-|----------|------------------------|-----------|-----------|-----|--------------------------|
-| 96122    | 마사지업               | 96122     | 마사지업  | 2   | 발, 스포츠 마사지업 포함 |
-| 96129    | 기타 미용관련 서비스업 | 96122     | 마사지업  | 2   | 발, 스포츠 마사지업 포함 |
+# 2. Use tidyr::unnest() to expand the list-columns into regular rows
+# 2. tidyr::unnest()를 사용하여 리스트 열을 일반적인 행으로 펼침
+unnested_df <- tidyr::unnest(nested_tibble, cols = c(ksic5_cd, ksic5_nm))
+cat("\nStep 2: Unnested tibble (final result)\n")
+#> 
+#> Step 2: Unnested tibble (final result)
+print(head(unnested_df))
+#> # A tibble: 6 × 3
+#>   ksic2_cd ksic5_cd ksic5_nm                  
+#>   <chr>    <chr>    <chr>                     
+#> 1 58       58112    만화 출판업               
+#> 2 58       58113    일반 서적 출판업          
+#> 3 58       58121    신문 발행업               
+#> 4 58       58111    교과서 및 학습 서적 출판업
+#> 5 58       58123    정기 광고 간행물 발행업   
+#> 6 58       58190    기타 인쇄물 출판업
+```

@@ -51,6 +51,7 @@ Retrieves a `data.frame` of KSIC data filtered by a specific revision and digit 
 
 **Example / 사용 예시:**
 ```{r}
+library(KSIC)
 ksic(digit = 1, C = 10)
 ```
 
