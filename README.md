@@ -18,7 +18,9 @@ The data is sourced from: 데이터의 출처는 아래와 같습니다.
 
 ## Installation
 
-You can install the KSIC package from GitHub with: KSIC package는 아래와 같이 설치할 수 있습니다.
+You can install the KSIC package from GitHub
+
+KSIC package는 아래와 같이 설치할 수 있습니다.
 
 ``` r
 # install.packages("devtools")
@@ -30,11 +32,13 @@ devtools::install_github("jjyunnn/KSIC")
 ## Functions / 주요 함수
 
 This package offers four main functions designed for efficiency and flexibility.
+
 이 패키지는 효율성과 유연성을 고려하여 설계된 네 가지 주요 함수를 제공합니다.
 
 ### `ksic()`
 
 Retrieves a `data.frame` of KSIC data filtered by a specific revision and digit level.
+
 특정 차수와 자릿수 수준으로 필터링된 KSIC 데이터프레임을 가져옵니다.
 
 **Example / 사용 예시:**
@@ -54,6 +58,7 @@ head(ksic(digit = 1, C = 10))
 ### `is_ksic()`
 
 Checks whether input codes are valid KSIC codes for the 9th and 10th revisions.
+
 입력된 코드가 9차 및 10차 KSIC에서 유효한 코드인지 확인합니다.
 
 **Example / 사용 예시:**
@@ -70,10 +75,11 @@ is_ksic(c("A", "01", "99999", "invalid_code"))
 ### `ksic_group()`
 
 Extracts the parent (upper-level) classification codes or names for a vector of KSIC codes.
+
 주어진 KSIC 코드 벡터에 대한 상위 분류 코드 또는 이름을 추출합니다.
 
-**Key Features & Advantages / 주요 특징 및 장점:** - **Flexible Input**:
-- Handles vectors with mixed-digit codes (e.g., `c("011", "2622")`)
+**Key Features & Advantages / 주요 특징 및 장점:**
+- **Flexible Input**: Handles vectors with mixed-digit codes (e.g., `c("011", "2622")`)
 - **유연한 입력**: 자릿수가 다른 코드들이 섞인 벡터(예:`c("011", "2622")`)도 처리할 수 있습니다.
 - **Efficient**: Uses an optimized `split-lapply-unsplit` pattern for fast lookups.
 - **효율성**: 최적화된 `split-lapply-unsplit` 패턴을 사용하여 빠른 조회를 보장합니다.
@@ -90,6 +96,7 @@ ksic_group(c("31311", "4631", "25"), digit = 2, name = TRUE)
 ### `ksic_sub()`
 
 Extracts all child (lower-level) classification codes or names for a vector of KSIC codes.
+
 주어진 KSIC 코드 벡터에 대한 모든 하위 분류 코드 또는 이름을 추출합니다.
 
 **Key Features & Advantages / 주요 특징 및 장점:**
@@ -118,6 +125,7 @@ print(result_list)
 ### Enriching a Dataset with `ksic_group`
 
 You can easily use `ksic_group` to enrich your dataset by adding parent classifications.
+
 `ksic_group`을 사용해 상위 분류 정보를 추가하여 데이터셋을 쉽게 확장할 수 있습니다.
 
 ``` r
@@ -138,6 +146,7 @@ print(my_data)
 ### Finding All Sub-Industries with `ksic_sub`
 
 `ksic_sub` is useful for identifying all specific industries within a broader category. The list output can be easily converted into a tidy data frame for further analysis.
+
 `ksic_sub`는 특정 상위 분류에 속하는 모든 세부 산업을 찾아낼 때 유용합니다. 리스트 형태의 출력 결과는 추가 분석을 위해 데이터프레임으로 쉽게 변환할 수 있습니다.
 
 ``` r
