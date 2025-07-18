@@ -18,8 +18,7 @@ The data is sourced from: 데이터의 출처는 아래와 같습니다.
 
 ## Installation
 
-You can install the KSIC package from GitHub with: KSIC package는 아래와
-같이 설치할 수 있습니다.
+You can install the KSIC package from GitHub with: KSIC package는 아래와 같이 설치할 수 있습니다.
 
 ``` r
 # install.packages("devtools")
@@ -28,74 +27,34 @@ devtools::install_github("jjyunnn/KSIC")
 
 ------------------------------------------------------------------------
 
-## Core Functions / 주요 함수
+## Functions / 주요 함수
 
-This package offers four main functions designed for efficiency and
-flexibility. 이 패키지는 효율성과 유연성을 고려하여 설계된 네 가지 주요
-함수를 제공합니다.
+This package offers four main functions designed for efficiency and flexibility.
+이 패키지는 효율성과 유연성을 고려하여 설계된 네 가지 주요 함수를 제공합니다.
 
 ### `ksic()`
 
-Retrieves a `data.frame` of KSIC data filtered by a specific revision
-and digit level. 특정 차수와 자릿수 수준으로 필터링된 KSIC
-데이터프레임을 가져옵니다.
+Retrieves a `data.frame` of KSIC data filtered by a specific revision and digit level.
+특정 차수와 자릿수 수준으로 필터링된 KSIC 데이터프레임을 가져옵니다.
 
 **Example / 사용 예시:**
 
 ``` r
 library(KSIC)
-ksic(digit = 1, C = 10)
-#>      cd                                                               nm digit
-#> 1958  A                                        농업, 임업 및 어업(01~03)     1
-#> 1959  B                                                      광업(05~08)     1
-#> 1960  C                                                    제조업(10~34)     1
-#> 1961  D                         전기, 가스, 증기 및 공기 조절 공급업(35)     1
-#> 1962  E                    수도, 하수 및 폐기물 처리, 원료 재생업(36~39)     1
-#> 1963  F                                                    건설업(41~42)     1
-#> 1964  G                                            도매 및 소매업(45~47)     1
-#> 1965  H                                            운수 및 창고업(49~52)     1
-#> 1966  I                                          숙박 및 음식점업(55~56)     1
-#> 1967  J                                                정보통신업(58~63)     1
-#> 1968  K                                            금융 및 보험업(64~66)     1
-#> 1969  L                                                     부동산업(68)     1
-#> 1970  M                               전문, 과학 및 기술 서비스업(70~73)     1
-#> 1971  N                 사업시설 관리, 사업 지원 및 임대 서비스업(74~76)     1
-#> 1972  O                             공공 행정, 국방 및 사회보장 행정(84)     1
-#> 1973  P                                                교육 서비스업(85)     1
-#> 1974  Q                               보건업 및 사회복지 서비스업(86~87)     1
-#> 1975  R                         예술, 스포츠 및 여가관련 서비스업(90~91)     1
-#> 1976  S                  협회 및 단체, 수리 및 기타 개인 서비스업(94~96)     1
-#> 1977  T 가구 내 고용활동 및 달리 분류되지 않은 자가 소비 생산활동(97~98)     1
-#> 1978  U                                             국제 및 외국기관(99)     1
-#>      ksic_C
-#> 1958    C10
-#> 1959    C10
-#> 1960    C10
-#> 1961    C10
-#> 1962    C10
-#> 1963    C10
-#> 1964    C10
-#> 1965    C10
-#> 1966    C10
-#> 1967    C10
-#> 1968    C10
-#> 1969    C10
-#> 1970    C10
-#> 1971    C10
-#> 1972    C10
-#> 1973    C10
-#> 1974    C10
-#> 1975    C10
-#> 1976    C10
-#> 1977    C10
-#> 1978    C10
+head(ksic(digit = 1, C = 10))
+#>      cd                                            nm digit ksic_C
+#> 1958  A                     농업, 임업 및 어업(01~03)     1    C10
+#> 1959  B                                   광업(05~08)     1    C10
+#> 1960  C                                 제조업(10~34)     1    C10
+#> 1961  D      전기, 가스, 증기 및 공기 조절 공급업(35)     1    C10
+#> 1962  E 수도, 하수 및 폐기물 처리, 원료 재생업(36~39)     1    C10
+#> 1963  F                                 건설업(41~42)     1    C10
 ```
 
 ### `is_ksic()`
 
-Checks whether input codes are valid KSIC codes for the 9th and 10th
-revisions. 입력된 코드가 9차 및 10차 KSIC에서 유효한 코드인지
-확인합니다.
+Checks whether input codes are valid KSIC codes for the 9th and 10th revisions.
+입력된 코드가 9차 및 10차 KSIC에서 유효한 코드인지 확인합니다.
 
 **Example / 사용 예시:**
 
@@ -110,16 +69,14 @@ is_ksic(c("A", "01", "99999", "invalid_code"))
 
 ### `ksic_group()`
 
-Extracts the parent (upper-level) classification codes or names for a
-vector of KSIC codes. 주어진 KSIC 코드 벡터에 대한 상위 분류 코드 또는
-이름을 추출합니다.
+Extracts the parent (upper-level) classification codes or names for a vector of KSIC codes.
+주어진 KSIC 코드 벡터에 대한 상위 분류 코드 또는 이름을 추출합니다.
 
 **Key Features & Advantages / 주요 특징 및 장점:** - **Flexible Input**:
-Handles vectors with mixed-digit codes (e.g., `c("011", "2622")`). -
-**유연한 입력**: 자릿수가 다른 코드들이 섞인 벡터(예:
-`c("011", "2622")`)도 처리할 수 있습니다. - **Efficient**: Uses an
-optimized `split-lapply-unsplit` pattern for fast lookups. - **효율성**:
-최적화된 `split-lapply-unsplit` 패턴을 사용하여 빠른 조회를 보장합니다.
+- Handles vectors with mixed-digit codes (e.g., `c("011", "2622")`)
+- **유연한 입력**: 자릿수가 다른 코드들이 섞인 벡터(예:`c("011", "2622")`)도 처리할 수 있습니다.
+- **Efficient**: Uses an optimized `split-lapply-unsplit` pattern for fast lookups.
+- **효율성**: 최적화된 `split-lapply-unsplit` 패턴을 사용하여 빠른 조회를 보장합니다.
 
 **Example / 사용 예시:**
 
@@ -132,16 +89,14 @@ ksic_group(c("31311", "4631", "25"), digit = 2, name = TRUE)
 
 ### `ksic_sub()`
 
-Extracts all child (lower-level) classification codes or names for a
-vector of KSIC codes. 주어진 KSIC 코드 벡터에 대한 모든 하위 분류 코드
-또는 이름을 추출합니다.
+Extracts all child (lower-level) classification codes or names for a vector of KSIC codes.
+주어진 KSIC 코드 벡터에 대한 모든 하위 분류 코드 또는 이름을 추출합니다.
 
-**Key Features & Advantages / 주요 특징 및 장점:** - **Comprehensive
-Output**: Returns a `list` where each element contains a vector of child
-codes. - **포괄적인 출력**: 각 입력 코드에 해당하는 하위 코드 벡터를
-담은 `리스트`를 반환합니다. - **Flexible Input**: Handles vectors with
-mixed-digit codes. - **유연한 입력**: 자릿수가 다른 코드가 섞인 벡터도
-처리합니다.
+**Key Features & Advantages / 주요 특징 및 장점:**
+- **ComprehensiveOutput**: Returns a `list` where each element contains a vector of child codes.
+- **포괄적인 출력**: 각 입력 코드에 해당하는 하위 코드 벡터를 담은 `리스트`를 반환합니다.
+- **Flexible Input**: Handles vectors with mixed-digit codes.
+- **유연한 입력**: 자릿수가 다른 코드가 섞인 벡터도 처리합니다.
 
 **Example / 사용 예시:**
 
@@ -162,9 +117,8 @@ print(result_list)
 
 ### Enriching a Dataset with `ksic_group`
 
-You can easily use `ksic_group` to enrich your dataset by adding parent
-classifications. `ksic_group`을 사용해 상위 분류 정보를 추가하여
-데이터셋을 쉽게 확장할 수 있습니다.
+You can easily use `ksic_group` to enrich your dataset by adding parent classifications.
+`ksic_group`을 사용해 상위 분류 정보를 추가하여 데이터셋을 쉽게 확장할 수 있습니다.
 
 ``` r
 my_data <- data.frame(
@@ -183,11 +137,8 @@ print(my_data)
 
 ### Finding All Sub-Industries with `ksic_sub`
 
-`ksic_sub` is useful for identifying all specific industries within a
-broader category. The list output can be easily converted into a tidy
-data frame for further analysis. `ksic_sub`는 특정 상위 분류에 속하는
-모든 세부 산업을 찾아낼 때 유용합니다. 리스트 형태의 출력 결과는 추가
-분석을 위해 데이터프레임으로 쉽게 변환할 수 있습니다.
+`ksic_sub` is useful for identifying all specific industries within a broader category. The list output can be easily converted into a tidy data frame for further analysis.
+`ksic_sub`는 특정 상위 분류에 속하는 모든 세부 산업을 찾아낼 때 유용합니다. 리스트 형태의 출력 결과는 추가 분석을 위해 데이터프레임으로 쉽게 변환할 수 있습니다.
 
 ``` r
 # 분석할 중분류 코드 정의
