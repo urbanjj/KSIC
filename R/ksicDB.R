@@ -1,14 +1,16 @@
-#' Korea Standard Industry Code Data
+#' 한국표준산업분류 데이터 / Korea Standard Industry Code Data
 #'
-#' Korea Standard Industry Code Data
+#' @description
+#' 9차 및 10차 한국표준산업분류(KSIC)의 코드, 이름, 차수, 자릿수 정보를 포함하는 데이터셋입니다.
+#' A dataset containing the codes, names, revisions, and digits of the 9th and 10th Korea Standard Industrial Classification (KSIC).
 #'
-#' @source <https://kssc.kostat.go.kr>
-#' @format Data frame with columns
+#' @source \url{https://kssc.kostat.go.kr}
+#' @format A data frame with columns:
 #' \describe{
-#' \item{cd}{code.}
-#' \item{nm}{name.}
-#' \item{digit}{digit=1,2,3,4,5.}
-#' \item{ksic_C}{9 or 10.}
+#' \item{cd}{분류 코드. Classification code.}
+#' \item{nm}{분류명. Classification name.}
+#' \item{digit}{분류 자릿수 (1-5). Digit of the classification (1-5).}
+#' \item{ksic_C}{KSIC 차수 (C9 또는 C10). KSIC revision (C9 or C10).}
 #' }
 #' @examples
 #'   ksicDB
