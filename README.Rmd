@@ -59,11 +59,11 @@ This package includes several built-in datasets to support the functions.
 ## Global Option for KSIC Revision / 전역 옵션 설정
 
 You can set a global default for the KSIC revision (the `C` parameter) using R's `options()` function. This avoids having to specify the revision in every function call if you are consistently working with one version. The default is 11.
+
 R의 `options()` 함수를 사용하여 KSIC 차수(`C` 매개변수)에 대한 전역 기본값을 설정할 수 있습니다. 이렇게 하면 특정 버전으로 계속 작업하는 경우 모든 함수 호출에서 차수를 지정할 필요가 없습니다. 기본값은 11입니다.
 
 **Example / 사용 예시:**
-```{
-r}
+```{r}
 library(KSIC)
 # Set the default KSIC revision to the 10th
 # 기본 KSIC 차수를 10차로 설정
@@ -91,8 +91,7 @@ Retrieves a `data.frame` of KSIC data filtered by a specific revision and digit 
 특정 차수와 자릿수 수준으로 필터링된 KSIC 데이터프레임을 가져옵니다. 기본 차수는 11차입니다.
 
 **Example / 사용 예시:**
-```{
-r}
+```{r}
 # Get 1-digit codes from the default 11th revision
 head(ksic(digit = 1))
 
@@ -106,8 +105,7 @@ Checks whether input codes are valid KSIC codes for the 9th, 10th, and 11th revi
 입력된 코드가 9차, 10차, 11차 KSIC에서 유효한 코드인지 확인합니다.
 
 **Example / 사용 예시:**
-```{
-r}
+```{r}
 is_ksic(c("A", "01", "99999", "invalid_code"))
 ```
 
@@ -123,8 +121,7 @@ Extracts the parent (upper-level) classification codes or names for a vector of 
 - **효율성**: 최적화된 `split-lapply-unsplit` 패턴을 사용하여 빠른 조회를 보장합니다.
 
 **Example / 사용 예시:**
-```{
-r}
+```{r}
 ksic_group(c("31311", "4631", "25", "A"), digit = 2, name = TRUE)
 ```
 
@@ -140,8 +137,7 @@ Extracts all child (lower-level) classification codes or names for a vector of K
 - **유연한 입력**: 자릿수가 다른 코드가 섞인 벡터도 처리합니다.
 
 **Example / 사용 예시:**
-```{
-r}
+```{r}
 result_list <- ksic_sub(c("26","96","52636"), digit = 4)
 print(result_list)
 ```
@@ -156,8 +152,7 @@ Converts KSIC codes from one revision to another.
 > **(중요) 차수 개정 시, 산업 분류는 통합, 분할 또는 변경될 수 있습니다. 즉, 특정 코드가 다른 차수에서 여러 코드로 나뉘거나(1:N), 여러 코드가 하나의 코드로 통합(N:1)될 수 있습니다. `ksic_convert` 함수는 이러한 복잡한 관계를 그대로 보여주는 데이터프레임을 반환하므로, 사용자는 변환 결과가 1:1이 아님을 주의하여야 합니다.**
 
 **Example / 사용 예시:**
-```{
-r}
+```{r}
 # Convert 10th revision codes to 11th revision
 ksic_convert(c("10110", "10111"), from_C = 10, to_C = 11)
 
@@ -171,8 +166,7 @@ Searches for KSIC codes by a keyword in Korean or English classification names.
 국문 또는 영문 분류명에 포함된 키워드로 KSIC 코드를 검색합니다.
 
 **Example / 사용 예시:**
-```{
-r}
+```{r}
 # Search for classifications containing "소프트웨어" in the 11th revision
 ksic_search("소프트웨어")
 
@@ -189,8 +183,7 @@ ksic_search("software", C = 10, ignore.case = FALSE, digit = 5)
 You can easily use `ksic_group` to enrich your dataset by adding parent classifications.
 `ksic_group`을 사용해 상위 분류 정보를 추가하여 데이터셋을 쉽게 확장할 수 있습니다.
 
-```{
-r}
+```{r}
 my_data <- data.frame(
   company = c("A", "B", "C", "D"),
   ksic5_cd = c("26222", "58221", "26299", "61220")
@@ -205,8 +198,7 @@ print(my_data)
 `ksic_sub` is useful for identifying all specific industries within a broader category. The list output can be easily converted into a tidy data frame for further analysis.
 `ksic_sub`는 특정 상위 분류에 속하는 모든 세부 산업을 찾아낼 때 유용합니다. 리스트 형태의 출력 결과는 추가 분석을 위해 데이터프레임으로 쉽게 변환할 수 있습니다.
 
-```{
-r}
+```{r}
 # 분석할 중분류 코드 정의
 # Define mid-level divisions for analysis
 target_divisions <- c("58", "61") # 출판업, 우편 및 통신업
