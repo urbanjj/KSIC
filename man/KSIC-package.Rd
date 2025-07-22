@@ -4,20 +4,20 @@
 \name{KSIC-package}
 \alias{KSIC}
 \alias{KSIC-package}
-\title{KSIC: Korea Standard Industry Code Data}
+\title{KSIC: Korea Standard Industry Code (KSIC) Data}
 \description{
-Korea Standard Industry Code Data.
+Provides data and functions for using the Korea Standard Industrial Classification (KSIC). 한국표준산업분류(KSIC) 데이터를 사용하기 위한 데이터와 함수를 제공합니다.
 }
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/jjyunnn/KSIC}
-  \item Report bugs at \url{https://github.com/jjyunnn/KSIC/issues}
+  \item \url{https://github.com/urbanjj/KSIC}
+  \item Report bugs at \url{https://github.com/urbanjj/KSIC/issues}
 }
 
 }
 \author{
-\strong{Maintainer}: Jongjin Yun \email{jjjyunn@gmail.ac.kr} (\href{https://orcid.org/YOUR-ORCID-ID}{ORCID})
+\strong{Maintainer}: Jongjin Yun \email{jongjin@uos.ac.kr} (\href{https://orcid.org/0009-0000-0161-2285}{ORCID})
 
 }
 \keyword{internal}

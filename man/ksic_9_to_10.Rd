@@ -3,17 +3,9 @@
 \docType{data}
 \name{ksic_9_to_10}
 \alias{ksic_9_to_10}
-\title{Korea Standard Industry Code Connection 9th to 10th}
+\title{KSIC 9차-10차 연계표 / KSIC 9th to 10th Concordance Table}
 \format{
-Data frame with columns
-\describe{
-\item{ksic9_cd}{from code.}
-\item{ksic9_nm}{from name.}
-\item{ksic10_cd}{to code.}
-\item{ksic10_nm}{to name.}
-\item{con}{type of connection.}
-\item{detail}{detail.}
-}
+A data frame with columns for 9th codes, 10th codes, and connection details.
 }
 \source{
 \url{https://kssc.kostat.go.kr}
@@ -22,7 +14,8 @@ Data frame with columns
 ksic_9_to_10
 }
 \description{
-Korea Standard Industry Code Connection 9th to 10th
+9차 KSIC 코드를 10차 KSIC 코드로 변환하기 위한 연계표입니다.
+A concordance table for converting 9th revision KSIC codes to 10th revision KSIC codes.
 }
 \examples{
   ksic_9_to_10

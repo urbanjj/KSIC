@@ -9,9 +9,11 @@
 #' \describe{
 #' \item{cd}{분류 코드. Classification code.}
 #' \item{nm}{분류명. Classification name.}
+#' \item{eng_nm}{영문 분류명. English classification name.}
 #' \item{digit}{분류 자릿수 (1-5). Digit of the classification (1-5).}
 #' \item{ksic_C}{KSIC 차수 (C9 또는 C10). KSIC revision (C9 or C10).}
 #' }
 #' @examples
 #'   ksicDB
 "ksicDB"
+

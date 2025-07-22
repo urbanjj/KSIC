@@ -1,19 +1,16 @@
 Package: KSIC
 Title: Korea Standard Industry Code (KSIC) Data
-Version: 0.0.0.9000
+Version: 1.0.0
 Authors@R: 
-    person("Jongjin", "Yun", , "jjjyunn@gmail.ac.kr", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
+    person("Jongjin", "Yun", , "jongjin@uos.ac.kr", role = c("aut", "cre"),
+           comment = c(ORCID = "0009-0000-0161-2285"))
 Description: Provides data and functions for using the Korea Standard Industrial Classification (KSIC). 한국표준산업분류(KSIC) 데이터를 사용하기 위한 데이터와 함수를 제공합니다.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.2
-URL: https://github.com/jjyunnn/KSIC
-BugReports: https://github.com/jjyunnn/KSIC/issues
+RoxygenNote: 7.3.2
+URL: https://github.com/urbanjj/KSIC
+BugReports: https://github.com/urbanjj/KSIC/issues
 Depends: 
     R (>= 2.10)
 LazyData: true
-Suggests: 
-    testthat (>= 3.0.0)
-Config/testthat/edition: 3

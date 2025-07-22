@@ -2,10 +2,17 @@
 % Please edit documentation in R/is_ksic.R
 \name{is_ksic}
 \alias{is_ksic}
-\title{is ksic?}
+\title{KSIC 코드 유효성 검사 / Check for Valid KSIC Codes}
 \usage{
 is_ksic(ksic)
 }
+\arguments{
+\item{ksic}{character. 확인할 KSIC 코드 벡터. A vector of KSIC codes to check.}
+}
+\value{
+A data.frame with the input codes and logical columns (C9, C10, C11) indicating validity.
+}
 \description{
-is ksic?
+입력된 코드가 주어진 KSIC 차수(9차, 10차, 11차)에 유효한 코드인지 확인합니다.
+Checks if the input codes are valid for the given KSIC revision (9th, 10th, or 11th).
 }

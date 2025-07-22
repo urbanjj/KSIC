@@ -3,22 +3,9 @@
 \docType{data}
 \name{ksicTreeDB}
 \alias{ksicTreeDB}
-\title{Korea Standard Industry Code Data Tree Structure}
+\title{한국표준산업분류 트리 구조 데이터 / Korea Standard Industry Code Tree Data}
 \format{
-Data frame with columns
-\describe{
-\item{ksic1_cd}{digit1 code.}
-\item{ksic1_nm}{digit1 name.}
-\item{ksic2_cd}{digit2 code.}
-\item{ksic2_nm}{digit2 name.}
-\item{ksic3_cd}{digit3 code.}
-\item{ksic3_nm}{digit3 name.}
-\item{ksic4_cd}{digit4 code.}
-\item{ksic4_nm}{digit4 name.}
-\item{ksic5_cd}{digit5 code.}
-\item{ksic5_nm}{digit5 name.}
-\item{ksic_C}{9 or 10.}
-}
+A data frame with columns for each classification level (1 to 5 digits) and the KSIC revision.
 }
 \source{
 \url{https://kssc.kostat.go.kr}
@@ -27,7 +14,8 @@ Data frame with columns
 ksicTreeDB
 }
 \description{
-Korea Standard Industry Code Data
+9차 및 10차 KSIC의 계층 구조를 나타내는 데이터셋입니다. 각 세세분류(5-digit)에 대한 상위 분류 코드가 포함되어 있습니다.
+A dataset representing the hierarchical structure of the 9th and 10th KSIC. It includes parent codes for each 5-digit classification.
 }
 \examples{
   ksicTreeDB

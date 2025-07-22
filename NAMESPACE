@@ -2,5 +2,7 @@
 
 export(is_ksic)
 export(ksic)
+export(ksic_convert)
 export(ksic_group)
+export(ksic_search)
 export(ksic_sub)

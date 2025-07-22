@@ -2,10 +2,33 @@
 % Please edit documentation in R/ksic.R
 \name{ksic}
 \alias{ksic}
-\title{print ksic}
+\title{KSIC 데이터 조회 / Get KSIC Data}
 \usage{
-ksic(digit = 5, C = 10)
+ksic(digit = 5, C = NULL, eng_nm = FALSE)
+}
+\arguments{
+\item{digit}{integer. 추출하고자 하는 분류의 자릿수 (1-5). 기본값은 5입니다.
+The digit of the classification to extract (1-5). Default is 5.}
+
+\item{C}{integer. KSIC 차수 (9, 10, 11). 기본값은 \code{getOption("ksic.C", 11)}입니다.
+The KSIC revision (9, 10, or 11). If NULL, \code{getOption("ksic.C", 11)} is used.}
+
+\item{eng_nm}{logical. \code{TRUE}일 경우 영문 분류명을 포함하고, \code{FALSE}일 경우 제외합니다. 기본값은 \code{FALSE}입니다.
+If \code{TRUE}, includes English classification names; if \code{FALSE}, excludes them. Default is \code{FALSE}.}
+}
+\value{
+지정된 조건에 맞는 KSIC 코드와 이름이 포함된 데이터프레임을 반환합니다.
+A data.frame containing the specified KSIC codes and names.
 }
 \description{
-print ksic
+지정된 차수와 자릿수에 해당하는 KSIC 데이터를 데이터프레임 형태로 반환합니다.
+
+Returns a data.frame of KSIC data for the specified revision and digit.
+}
+\examples{
+# 11차 KSIC의 1자리 코드 조회
+ksic(digit = 1)
+
+# 10차 KSIC의 2자리 코드 및 영문명 조회
+ksic(digit = 2, C = 10, eng_nm = TRUE)
 }
