@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# KSIC
+# KSIC(Korea Standard Industrial Classification)
 
 This package provides tools to utilize the Korea Standard Industrial
 Classification (KSIC) in R.
