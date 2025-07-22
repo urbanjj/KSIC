@@ -37,7 +37,7 @@ A1 <- A0 %>%
 ksicTreeDB <- bind_rows(C1,B1,A1) %>% as.data.frame()
 str(ksicTreeDB)
 
-save(ksicTreeDB, file='./data/ksicTreeDB.rda')
+save(ksicTreeDB, file='./data/ksicTreeDB.rda', compress = "xz")
 
 rm(list=ls())
 
@@ -103,7 +103,7 @@ A2 <- bind_rows(A1.result, filter(A1, !is.na(nm))) %>%
 ksicDB <- bind_rows(C2,B2,A2) %>% as.data.frame()
 str(ksicDB)
 
-save(ksicDB, file='./data/ksicDB.rda')
+save(ksicDB, file='./data/ksicDB.rda', compress = "xz")
 rm(list=ls())
 
 load('./data/ksicDB.rda')
@@ -136,8 +136,8 @@ ksic_9_to_10 <- mutate_all(Q1, ~str_trim(.x, side='both')) %>%
   as.data.frame()
 
 
-save(ksic_10_to_9, file='./data/ksic_10_to_9.rda')
-save(ksic_9_to_10, file='./data/ksic_9_to_10.rda')
+save(ksic_10_to_9, file='./data/ksic_10_to_9.rda', compress = "xz")
+save(ksic_9_to_10, file='./data/ksic_9_to_10.rda', compress = "xz")
 
 
 ##################### ksic_10_to_11 & ksic_11_to_10
@@ -159,8 +159,8 @@ setnames(D1, c('ksic10_cd', 'ksic10_nm', 'ksic11_cd', 'ksic11_nm', 'detail'))
 ksic_10_to_11 <- D1 %>%
   as.data.frame()
 
-save(ksic_11_to_10, file='./data/ksic_11_to_10.rda')
-save(ksic_10_to_11, file='./data/ksic_10_to_11.rda')
+save(ksic_11_to_10, file='./data/ksic_11_to_10.rda', compress = "xz")
+save(ksic_10_to_11, file='./data/ksic_10_to_11.rda', compress = "xz")
 
 
 ## data-raw

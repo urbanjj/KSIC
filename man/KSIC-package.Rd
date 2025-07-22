@@ -6,7 +6,7 @@
 \alias{KSIC-package}
 \title{KSIC: Korea Standard Industry Code (KSIC) Data}
 \description{
-Provides data and functions for using the Korea Standard Industrial Classification (KSIC). 한국표준산업분류(KSIC) 데이터를 사용하기 위한 데이터와 함수를 제공합니다.
+Provides data and functions for using the Korea Standard Industrial Classification (KSIC).
 }
 \seealso{
 Useful links:

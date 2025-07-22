@@ -2,36 +2,31 @@
 % Please edit documentation in R/ksic_sub.R
 \name{ksic_sub}
 \alias{ksic_sub}
-\title{하위 KSIC 코드 추출 / Extract Child KSIC Codes}
+\title{Extract Child KSIC Codes}
 \usage{
 ksic_sub(ksic, digit = 5, C = NULL, name = FALSE)
 }
 \arguments{
-\item{ksic}{character. 하위 코드를 찾을 KSIC 코드 벡터.
+\item{ksic}{character.
 A vector of KSIC codes to find child codes for.}
 
-\item{digit}{integer. 추출하고자 하는 하위 분류의 자릿수 (1-5). 기본값은 5입니다.
+\item{digit}{integer.
 The digit of the child classification to extract (1-5). Default is 5.}
 
-\item{C}{integer. KSIC 차수 (9, 10, 11). 기본값은 \code{getOption("ksic.C", 11)}입니다.
+\item{C}{integer.
 The KSIC revision (9, 10, or 11). If NULL, \code{getOption("ksic.C", 11)} is used.}
 
-\item{name}{logical. \code{TRUE}일 경우 코드명, \code{FALSE}일 경우 코드를 반환합니다. 기본값은 \code{FALSE}입니다.
+\item{name}{logical.
 If \code{TRUE}, returns names; if \code{FALSE}, returns codes. Default is \code{FALSE}.}
 }
 \value{
-각 입력 코드에 해당하는 하위 분류 코드 또는 이름의 벡터를 담은 리스트를 반환합니다. 하위 코드가 없으면 \code{NA}를 포함하는 리스트 요소가 반환됩니다.
 A list containing vectors of child codes or names for each input code. Returns a list element with \code{NA} if no child codes are found.
 }
 \description{
-입력된 KSIC 코드에 해당하는 하위 분류 코드를 추출합니다. 여러 자릿수의 코드가 혼합된 벡터를 입력할 수 있습니다.
-
 Extracts the child classification codes corresponding to the input KSIC codes. It can handle a vector containing codes with different numbers of digits.
 }
 \examples{
-# 여러 KSIC 코드의 4자리 하위 코드 조회
 ksic_sub(c("26", "96", "52636"), digit = 4)
 
-# "58" 코드의 5자리 하위 코드명 조회
 ksic_sub("58", digit = 5, name = TRUE)
 }

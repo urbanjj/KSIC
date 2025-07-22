@@ -2,36 +2,31 @@
 % Please edit documentation in R/ksic_group.R
 \name{ksic_group}
 \alias{ksic_group}
-\title{상위 KSIC 코드 추출 / Extract Parent KSIC Codes}
+\title{Extract Parent KSIC Codes}
 \usage{
 ksic_group(ksic, digit = 1, C = NULL, name = FALSE)
 }
 \arguments{
-\item{ksic}{character. 상위 코드를 찾을 KSIC 코드 벡터.
+\item{ksic}{character.
 A vector of KSIC codes to find parent codes for.}
 
-\item{digit}{integer. 추출하고자 하는 상위 분류의 자릿수 (1-5). 기본값은 1입니다.
+\item{digit}{integer.
 The digit of the parent classification to extract (1-5). Default is 1.}
 
-\item{C}{integer. KSIC 차수 (9, 10, 11). 기본값은 \code{getOption("ksic.C", 11)}입니다.
+\item{C}{integer.
 The KSIC revision (9, 10, or 11). If NULL, \code{getOption("ksic.C", 11)} is used.}
 
-\item{name}{logical. \code{TRUE}일 경우 코드명, \code{FALSE}일 경우 코드를 반환합니다. 기본값은 \code{FALSE}입니다.
+\item{name}{logical.
 If \code{TRUE}, returns names; if \code{FALSE}, returns codes. Default is \code{FALSE}.}
 }
 \value{
-입력 벡터와 동일한 길이의 문자형 벡터를 반환합니다. 각 요소는 해당 KSIC 코드의 상위 분류 코드 또는 이름입니다. 상위 코드가 없으면 \code{NA}가 반환됩니다.
 A character vector of the same length as the input vector, containing parent codes or names. Returns \code{NA} if a parent code does not exist.
 }
 \description{
-입력된 KSIC 코드에 해당하는 상위 분류 코드를 추출합니다. 여러 자릿수의 코드가 혼합된 벡터를 입력할 수 있습니다.
-
 Extracts the parent classification codes corresponding to the input KSIC codes. It can handle a vector containing codes with different numbers of digits.
 }
 \examples{
-# 여러 KSIC 코드의 2자리 상위 코드명 조회
 ksic_group(c("31311", "4631", "25", "A"), digit = 2, name = TRUE)
 
-# 5자리 코드의 4자리 상위 코드 조회
 ksic_group("26222", digit = 4)
 }

@@ -2,35 +2,29 @@
 % Please edit documentation in R/ksic_search.R
 \name{ksic_search}
 \alias{ksic_search}
-\title{KSIC 키워드 검색 / Search KSIC by Keyword}
+\title{Search KSIC by Keyword}
 \usage{
 ksic_search(keyword, C = NULL, ignore.case = TRUE, digit = NULL)
 }
 \arguments{
-\item{keyword}{character. 검색할 키워드. A keyword to search for.}
+\item{keyword}{character. keyword to search for.}
 
-\item{C}{integer. KSIC 차수 (9, 10, 11). The KSIC revision. If NULL, \code{getOption("ksic.C", 11)} is used.}
+\item{C}{integer. The KSIC revision. If NULL, \code{getOption("ksic.C", 11)} is used.}
 
-\item{ignore.case}{logical. 대소문자를 무시할지 여부. If \code{TRUE}, the case is ignored during search. Default is \code{TRUE}.}
+\item{ignore.case}{logical. If \code{TRUE}, the case is ignored during search. Default is \code{TRUE}.}
 
-\item{digit}{integer. 검색할 분류 자릿수 (1-5). Can be a vector. If NULL, all digits are searched.}
+\item{digit}{integer. Can be a vector of (1-5). If NULL, all digits are searched.}
 }
 \value{
 A data.frame of matching KSIC codes and names, or \code{NULL} if no match is found.
 }
 \description{
-국문 또는 영문 분류명에 포함된 키워드로 KSIC 코드를 검색합니다.
-한글 키워드로 검색 시 결과에서 영문명(\code{eng_nm}) 열은 제외됩니다.
 Searches for KSIC codes by a keyword in Korean or English classification names.
 If searching with a Korean keyword, the English name (\code{eng_nm}) column is excluded from the result.
 }
 \examples{
-# 11차 개정에서 "소프트웨어"가 포함된 모든 분류 검색
-ksic_search("소프트웨어")
 
-# 10차 개정에서 "software"가 포함된 5자리 분류 검색 (대소문자 구분)
 ksic_search("software", C = 10, ignore.case = FALSE, digit = 5)
 
-# "data" 또는 "database" 검색
 ksic_search("data|database")
 }
