@@ -35,7 +35,7 @@ KSIC package는 아래와 같이 설치할 수 있습니다.
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("jjyunnn/KSIC")
+devtools::install_github("urbanjj/KSIC")
 ```
 
 ---

@@ -17,7 +17,7 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Jongjin Yun \email{jongjin@uos.ac.kr} (\href{https://orcid.org/0009-0000-0161-2285}{ORCID})
+\strong{Maintainer}: Jongjin Yun \email{jongjin@uos.ac.kr}
 
 }
 \keyword{internal}
