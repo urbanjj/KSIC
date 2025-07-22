@@ -228,13 +228,13 @@ print(result_list)
 Converts KSIC codes from one revision to another. 주어진 KSIC 코드를 한
 차수에서 다른 차수로 변환합니다.
 
-> **Important Note / 중요 안내:** When converting between revisions,
-> industry classifications may be merged, subdivided, or otherwise
-> modified. This means a single code in one revision might map to
-> multiple codes in another (1:N), or multiple codes might merge into
-> one (N:1). `ksic_convert` returns a data frame reflecting these
-> complex relationships. Users should carefully examine the results,
-> especially when a one-to-one match is not guaranteed.
+> **Important Note** When converting between revisions, industry
+> classifications may be merged, subdivided, or otherwise modified. This
+> means a single code in one revision might map to multiple codes in
+> another (1:N), or multiple codes might merge into one (N:1).
+> `ksic_convert` returns a data frame reflecting these complex
+> relationships. Users should carefully examine the results, especially
+> when a one-to-one match is not guaranteed.
 >
 > **(중요) 차수 개정 시, 산업 분류는 통합, 분할 또는 변경될 수 있습니다.
 > 즉, 특정 코드가 다른 차수에서 여러 코드로 나뉘거나(1:N), 여러 코드가
@@ -246,20 +246,29 @@ Converts KSIC codes from one revision to another. 주어진 KSIC 코드를 한
 
 ``` r
 # Convert 10th revision codes to 11th revision
-ksic_convert(c("10110", "10111"), from_C = 10, to_C = 11)
+ksic_convert(c("27192", "27195"), from_C = 10, to_C = 11)
 ```
 
-    ##    ksic10_cd                ksic10_nm ksic11_cd                ksic11_nm detail
-    ## 46     10111 육류 도축업(가금류 제외)     10111 육류 도축업(가금류 제외)   <NA>
+    ##     ksic10_cd                              ksic10_nm ksic11_cd
+    ## 387     27192 정형 외과용 및 신체 보정용 기기 제조업     27192
+    ## 388     27192 정형 외과용 및 신체 보정용 기기 제조업     27193
+    ## 389     27192 정형 외과용 및 신체 보정용 기기 제조업     27194
+    ##                                  ksic11_nm detail
+    ## 387                      치과기공물 제조업   세분
+    ## 388                 치과용 임플란트 제조업   세분
+    ## 389 정형 외과용 및 신체 보정용 기기 제조업   세분
 
 ``` r
 # Convert 11th revision codes to 10th revision
-ksic_convert(c("10111", "10112"), from_C = 11, to_C = 10)
+ksic_convert(c("27192", "27195"), from_C = 11, to_C = 10)
 ```
 
-    ##    ksic11_cd                ksic11_nm ksic10_cd                ksic10_nm detail
-    ## 46     10111 육류 도축업(가금류 제외)     10111 육류 도축업(가금류 제외)   <NA>
-    ## 47     10112            가금류 도축업     10112            가금류 도축업   <NA>
+    ##     ksic11_cd               ksic11_nm ksic10_cd
+    ## 387     27192       치과기공물 제조업     27192
+    ## 390     27195 안경 및 안경렌즈 제조업     27193
+    ##                                  ksic10_nm   detail
+    ## 387 정형 외과용 및 신체 보정용 기기 제조업     세분
+    ## 390                안경 및 안경렌즈 제조업 코드변경
 
 ### `ksic_search()`
 

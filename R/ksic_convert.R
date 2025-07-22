@@ -12,10 +12,10 @@
 #' @export
 #' @examples
 #' # 10차 KSIC 코드를 11차 KSIC 코드로 변환
-#' ksic_convert(c("10110", "10111"), from_C = 10, to_C = 11)
+#' ksic_convert(c("27192", "27195"), from_C = 10, to_C = 11)
 #'
 #' # 11차 KSIC 코드를 10차 KSIC 코드로 변환
-#' ksic_convert(c("10111", "10112"), from_C = 11, to_C = 10)
+#' ksic_convert(c("27192", "27195"), from_C = 11, to_C = 10)
 ksic_convert <- function(ksic, from_C, to_C) {
   # 입력 값 유효성 검사 / Input validation
   if (!is.character(ksic)) {
