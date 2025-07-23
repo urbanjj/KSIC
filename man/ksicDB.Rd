@@ -14,9 +14,6 @@ A data frame with columns:
 \item{ksic_C}{KSIC revision (C9 or C10).}
 }
 }
-\source{
-\url{https://kssc.kostat.go.kr}
-}
 \usage{
 ksicDB
 }

@@ -3,7 +3,6 @@
 #' @description
 #' A dataset containing the codes, names, revisions, and digits of the 9th and 10th Korea Standard Industrial Classification (KSIC).
 #'
-#' @source \url{https://kssc.kostat.go.kr}
 #' @format A data frame with columns:
 #' \describe{
 #' \item{cd}{Classification code.}

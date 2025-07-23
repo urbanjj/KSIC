@@ -26,7 +26,7 @@ R에서 한국표준산업분류(KSIC)를 이용하기 위한 패키지입니다
 The data is sourced from:
 데이터의 출처는 아래와 같습니다.
 
-- [Korea Statistical Classification Portal (통계분류포털)](https://kssc.kostat.go.kr)
+- [Korea Statistical Classification Portal (통계분류포털)]
 
 ## Installation
 

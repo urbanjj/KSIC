@@ -1,6 +1,6 @@
 Package: KSIC
 Title: Korea Standard Industry Code (KSIC) Data
-Version: 1.0.0
+Version: 1.0.1
 Authors@R: 
     person("Jongjin", "Yun", , "jongjin@uos.ac.kr", role = c("aut", "cre"))
 Description: Provides data and functions for using the Korea Standard Industrial Classification (KSIC) codes.

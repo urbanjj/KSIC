@@ -7,9 +7,6 @@
 \format{
 A data frame with columns for each classification level (1 to 5 digits) and the KSIC revision.
 }
-\source{
-\url{https://kssc.kostat.go.kr}
-}
 \usage{
 ksicTreeDB
 }
