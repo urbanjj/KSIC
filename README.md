@@ -33,12 +33,13 @@ devtools::install_github("urbanjj/KSIC")
 
 ## Data
 
-This package includes several built-in datasets to support the
-functions. 이 패키지에는 함수를 지원하기 위한 여러 내장 데이터셋이
-포함되어 있습니다.
+This package includes several built-in datasets to support the functions.
 
-This table shows the number of categories in each KSIC revision. KSIC
-개정별 각 분류의 개수를 나타낸 표입니다.
+이 패키지에는 함수를 지원하기 위한 여러 내장 데이터셋이 포함되어 있습니다.
+
+This table shows the number of categories in each KSIC revision
+
+KSIC 개정별 각 분류의 개수를 나타낸 표입니다.
 
 | revision | Section(Alphabet) | Division(2 digit) | Group (3 digit) | Class (4 digit) | Sub-Class (5 digit) |
 |:---|:---|:---|:---|:---|:---|
@@ -113,14 +114,16 @@ options(ksic.C = 11)
 ## Core Functions / 주요 함수
 
 This package offers four main functions designed for efficiency and
-flexibility. 이 패키지는 효율성과 유연성을 고려하여 설계된 네 가지 주요
-함수를 제공합니다.
+flexibility.
+
+이 패키지는 효율성과 유연성을 고려하여 설계된 네 가지 주요 함수를 제공합니다.
 
 ### `ksic()`
 
 Retrieves a `data.frame` of KSIC data filtered by a specific revision
-and digit level. The default revision is 11. 특정 차수와 자릿수 수준으로
-필터링된 KSIC 데이터프레임을 가져옵니다. 기본 차수는 11차입니다.
+and digit level. The default revision is 11.
+
+특정 차수와 자릿수 수준으로 필터링된 KSIC 데이터프레임을 가져옵니다. 기본 차수는 11차입니다.
 
 **Example / 사용 예시:**
 
@@ -160,8 +163,9 @@ head(ksic(digit = 1, eng_nm = TRUE))
 ### `is_ksic()`
 
 Checks whether input codes are valid KSIC codes for the 9th, 10th, and
-11th revisions. 입력된 코드가 9차, 10차, 11차 KSIC에서 유효한 코드인지
-확인합니다.
+11th revisions.
+
+입력된 코드가 9차, 10차, 11차 KSIC에서 유효한 코드인지 확인합니다.
 
 **Example / 사용 예시:**
 
@@ -178,16 +182,15 @@ is_ksic(c("A", "01", "99999", "invalid_code"))
 ### `ksic_group()`
 
 Extracts the parent (upper-level) classification codes or names for a
-vector of KSIC codes. The default revision is 11. 주어진 KSIC 코드
-벡터에 대한 상위 분류 코드 또는 이름을 추출합니다. 기본 차수는
-11차입니다.
+vector of KSIC codes. The default revision is 11.
 
-**Key Features & Advantages / 주요 특징 및 장점:** - **Flexible Input**:
-Handles vectors with mixed-digit codes (e.g., `c("011", "2622")`). -
-**유연한 입력**: 자릿수가 다른 코드들이 섞인 벡터(예:
-`c("011", "2622")`)도 처리할 수 있습니다. - **Efficient**: Uses an
-optimized `split-lapply-unsplit` pattern for fast lookups. - **효율성**:
-최적화된 `split-lapply-unsplit` 패턴을 사용하여 빠른 조회를 보장합니다.
+주어진 KSIC 코드 벡터에 대한 상위 분류 코드 또는 이름을 추출합니다. 기본 차수는 11차입니다.
+
+**Key Features & Advantages / 주요 특징 및 장점:**
+- **Flexible Input**: Handles vectors with mixed-digit codes (e.g., `c("011", "2622")`).
+- **유연한 입력**: 자릿수가 다른 코드들이 섞인 벡터(예: `c("011", "2622")`)도 처리할 수 있습니다.
+- **Efficient**: Uses an optimized `split-lapply-unsplit` pattern for fast lookups.
+- **효율성**: 최적화된 `split-lapply-unsplit` 패턴을 사용하여 빠른 조회를 보장합니다.
 
 **Example / 사용 예시:**
 
@@ -203,16 +206,15 @@ ksic_group(c("31311", "4631", "25", "A"), digit = 2, name = TRUE)
 ### `ksic_sub()`
 
 Extracts all child (lower-level) classification codes or names for a
-vector of KSIC codes. The default revision is 11. 주어진 KSIC 코드
-벡터에 대한 모든 하위 분류 코드 또는 이름을 추출합니다. 기본 차수는
-11차입니다.
+vector of KSIC codes. The default revision is 11.
 
-**Key Features & Advantages / 주요 특징 및 장점:** - **Comprehensive
-Output**: Returns a `list` where each element contains a vector of child
-codes. - **포괄적인 출력**: 각 입력 코드에 해당하는 하위 코드 벡터를
-담은 `리스트`를 반환합니다. - **Flexible Input**: Handles vectors with
-mixed-digit codes. - **유연한 입력**: 자릿수가 다른 코드가 섞인 벡터도
-처리합니다.
+주어진 KSIC 코드 벡터에 대한 모든 하위 분류 코드 또는 이름을 추출합니다. 기본 차수는 11차입니다.
+
+**Key Features & Advantages / 주요 특징 및 장점:**
+- **Comprehensive Output**: Returns a `list` where each element contains a vector of child codes.
+- **포괄적인 출력**: 각 입력 코드에 해당하는 하위 코드 벡터를 담은 `리스트`를 반환합니다.
+- **Flexible Input**: Handles vectors with mixed-digit codes.
+- **유연한 입력**: 자릿수가 다른 코드가 섞인 벡터도 처리합니다.
 
 **Example / 사용 예시:**
 
@@ -233,8 +235,9 @@ print(result_list)
 
 ### `ksic_convert()`
 
-Converts KSIC codes from one revision to another. 주어진 KSIC 코드를 한
-차수에서 다른 차수로 변환합니다.
+Converts KSIC codes from one revision to another.
+
+주어진 KSIC 코드를 한 차수에서 다른 차수로 변환합니다.
 
 > **Important Note** When converting between revisions, industry
 > classifications may be merged, subdivided, or otherwise modified. This
@@ -281,7 +284,9 @@ ksic_convert(c("27192", "27195"), from_C = 11, to_C = 10)
 ### `ksic_search()`
 
 Searches for KSIC codes by a keyword in Korean or English classification
-names. 국문 또는 영문 분류명에 포함된 키워드로 KSIC 코드를 검색합니다.
+names.
+
+국문 또는 영문 분류명에 포함된 키워드로 KSIC 코드를 검색합니다.
 
 **Example / 사용 예시:**
 
@@ -341,8 +346,9 @@ ksic_search("software", C = 10, ignore.case = FALSE, digit = 5)
 ### Enriching a Dataset with `ksic_group`
 
 You can easily use `ksic_group` to enrich your dataset by adding parent
-classifications. `ksic_group`을 사용해 상위 분류 정보를 추가하여
-데이터셋을 쉽게 확장할 수 있습니다.
+classifications.
+
+`ksic_group`을 사용해 상위 분류 정보를 추가하여 데이터셋을 쉽게 확장할 수 있습니다.
 
 ``` r
 my_data <- data.frame(
@@ -364,9 +370,9 @@ print(my_data)
 
 `ksic_sub` is useful for identifying all specific industries within a
 broader category. The list output can be easily converted into a tidy
-data frame for further analysis. `ksic_sub`는 특정 상위 분류에 속하는
-모든 세부 산업을 찾아낼 때 유용합니다. 리스트 형태의 출력 결과는 추가
-분석을 위해 데이터프레임으로 쉽게 변환할 수 있습니다.
+data frame for further analysis.
+
+`ksic_sub`는 특정 상위 분류에 속하는 모든 세부 산업을 찾아낼 때 유용합니다. 리스트 형태의 출력 결과는 추가 분석을 위해 데이터프레임으로 쉽게 변환할 수 있습니다.
 
 ``` r
 # 분석할 중분류 코드 정의
