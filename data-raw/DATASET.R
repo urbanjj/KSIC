@@ -7,6 +7,10 @@ library(readr)
 library(data.table)
 library(stringr)
 
+unzip('./data-raw/9th.zip', exdir='./data-raw/')
+unzip('./data-raw/10th.zip', exdir='./data-raw/')
+unzip('./data-raw/11th.zip', exdir='./data-raw/')
+
 ##################### ksicTreeDB
 col_nm <- c("ksic1_cd", "ksic1_nm", "ksic2_cd", "ksic2_nm", "ksic3_cd", "ksic3_nm", "ksic4_cd", "ksic4_nm", "ksic5_cd", "ksic5_nm")
 
@@ -177,3 +181,7 @@ ksicDB_C10_codes <- ksicDB[ksicDB$ksic_C == "C10", "cd"]
 ksicDB_C11_codes <- ksicDB[ksicDB$ksic_C == "C11", "cd"]
 
 save(ksic_9_to_10, ksic_10_to_9, ksic_10_to_11, ksic_11_to_10, ksicDB_C9_codes, ksicDB_C10_codes, ksicDB_C11_codes, file = "R/sysdata.rda", compress = "xz")
+
+unlink('./data-raw/9th',recursive = TRUE)
+unlink('./data-raw/10th',recursive = TRUE)
+unlink('./data-raw/11th',recursive = TRUE)
