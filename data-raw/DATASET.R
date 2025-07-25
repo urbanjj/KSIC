@@ -19,24 +19,31 @@ excel_sheets('./data-raw/11th/7.한국표준산업분류 제11차 개정 분류�
 C0 <- read_excel('./data-raw/11th/7.한국표준산업분류 제11차 개정 분류체계(대-중-소-세-세세 구분) _20240626043559.xlsx',
                 sheet='11차개정한국표준산업분류',skip=2, col_names=T, col_types='text')
 setnames(C0, col_nm)
-C1 <- fill(C0, all_of(col_nm),.direction = 'down') %>%
+C1 <- filter(C0, !is.na(ksic5_cd)) %>%
+  fill(all_of(col_nm),.direction = 'down') %>%
   mutate(ksic_C='C11')
+
+sapply(C1, \(x) length(unique(x)))
 
 ## 10th
 excel_sheets('./data-raw/10th/한국표준산업분류(10차)_표.xlsx')
 B0 <- read_excel('./data-raw/10th/한국표준산업분류(10차)_표.xlsx',
                 sheet='10차개정한국표준산업분류',skip=2, col_names=T, col_types='text')
 setnames(B0, col_nm)
-B1 <- fill(B0, all_of(col_nm),.direction = 'down') %>%
+B1 <- filter(B0, !is.na(ksic5_cd)) %>%
+  fill(all_of(col_nm),.direction = 'down') %>%
   mutate(ksic_C='C10')
 
+sapply(B1, \(x) length(unique(x)))
+
 ## 9th
-A0 <- read_csv('./data-raw/9th/KSIC2007_tree.csv', col_names=c("ksic5_cd", "ksic5_nm", "ksic4_cd", "ksic4_nm", "ksic3_cd", "ksic3_nm", "ksic2_cd", "ksic2_nm", "ksic1_cd", "ksic1_nm")) %>%
+A0 <- read_csv('./data-raw/9th/KSIC2007_tree.csv') %>%
   select(all_of(col_nm))
 
 A1 <- A0 %>%
   mutate(ksic_C = 'C9')
 
+sapply(A1, \(x) length(unique(x)))
 
 ksicTreeDB <- bind_rows(C1,B1,A1) %>% as.data.frame()
 str(ksicTreeDB)
@@ -66,6 +73,8 @@ C1.result <- tibble(nm=c2, eng_nm=c3) %>%
 C2 <- bind_rows(C1.result, filter(C1, !is.na(nm))) %>%
   mutate(digit=str_length(cd),ksic_C='C11')
 
+as.data.table(C2)[,.N,by=.(digit)]
+
 ## 10th
 B0 <- read_excel('./data-raw/10th/KSIC_10th.xlsx',col_names=F,col_types = 'text')
 setnames(B0, c('cd','nm','eng_nm'))
@@ -83,6 +92,8 @@ B1.result <- tibble(nm=b2, eng_nm=b3) %>%
 
 B2 <- bind_rows(B1.result, filter(B1, !is.na(nm))) %>%
   mutate(digit=str_length(cd),ksic_C='C10')
+
+as.data.table(B2)[,.N,by=.(digit)]
 
 ## 9th
 excel_sheets('./data-raw/9th/KSIC2007.xls')
@@ -103,6 +114,8 @@ A1.result <- tibble(nm=a2, eng_nm=a3) %>%
 
 A2 <- bind_rows(A1.result, filter(A1, !is.na(nm))) %>%
   mutate(digit=str_length(cd),ksic_C='C9')
+
+as.data.table(A2)[,.N,by=.(digit)]
 
 ksicDB <- bind_rows(C2,B2,A2) %>% as.data.frame()
 str(ksicDB)

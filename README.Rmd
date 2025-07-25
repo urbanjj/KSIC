@@ -45,6 +45,16 @@ devtools::install_github("urbanjj/KSIC")
 This package includes several built-in datasets to support the functions.
 이 패키지에는 함수를 지원하기 위한 여러 내장 데이터셋이 포함되어 있습니다.
 
+This table shows the number of categories in each KSIC revision.
+KSIC 개정별 각 분류의 개수를 나타낸 표입니다.
+
+| revision | Section(Alphabet) | Division(2 digit) | Group (3 digit) | Class (4 digit) | Sub-Class (5 digit) |
+|:---|:---|:---|:---|:---|:---|
+| 11th | 21 | 77 | 234 | 501 | 1,205 |
+| 10th | 21 | 77 | 232 | 495 | 1,196 |
+| 9th  | 21 | 76 | 228 | 487 | 1,145 |
+
+
 - `ksicDB`: A comprehensive data frame containing all codes, names (Korean and English), digits, and revision numbers for the 9th, 10th, and 11th KSIC.
 - `ksicDB`: 9차, 10차, 11차 KSIC의 모든 코드, 이름(국문, 영문), 자릿수, 차수 정보를 포함하는 데이터프레임입니다.
 
@@ -216,7 +226,6 @@ sub_categories_df_base <- data.frame(
   ksic5_cd = unlist(sub_codes_list, use.names = FALSE),
   ksic5_nm = unlist(sub_names_list, use.names = FALSE)
 )
-cat("--- Using Base R ---\n")
 print(head(sub_categories_df_base))
 
 # --- Tidyverse Approach ---
@@ -225,8 +234,6 @@ print(head(sub_categories_df_base))
 # if (!require(tidyr)) install.packages("tidyr") 
 # if (!require(tibble)) install.packages("tibble")
 
-cat("\n--- Using Tidyverse ---\n")
-
 # 1. Create a nested tibble where some columns are lists
 # 1. 리스트를 열로 포함하는 중첩된 tibble 생성
 nested_tibble <- tibble::tibble(
@@ -234,12 +241,12 @@ nested_tibble <- tibble::tibble(
     ksic5_cd = sub_codes_list,
     ksic5_nm = sub_names_list
 )
-cat("\nStep 1: Nested tibble (before unnesting)\n")
+# Step 1: Nested tibble (before unnesting)"
 print(nested_tibble)
 
 # 2. Use tidyr::unnest() to expand the list-columns into regular rows
 # 2. tidyr::unnest()를 사용하여 리스트 열을 일반적인 행으로 펼침
 unnested_df <- tidyr::unnest(nested_tibble, cols = c(ksic5_cd, ksic5_nm))
-cat("\nStep 2: Unnested tibble (final result)\n")
+# Step 2: Unnested tibble (final result)"
 print(head(unnested_df))
 ```
