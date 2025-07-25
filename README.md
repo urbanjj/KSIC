@@ -1,8 +1,6 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-`{ r, include = FALSE} knitr::opts_chunk$set(   collapse = TRUE,   comment = "#>",   fig.path = "man/figures/README-",   out.width = "100%" )`
-
 # KSIC
 
 This package provides tools to utilize the Korea Standard Industrial
@@ -41,7 +39,7 @@ This table shows the number of categories in each KSIC revision
 
 KSIC 개정별 각 분류의 개수를 나타낸 표입니다.
 
-| revision | Section(Alphabet) | Division(2 digit) | Group (3 digit) | Class (4 digit) | Sub-Class (5 digit) |
+| revision | Section(Alphabet) | Division (2 digit) | Group (3 digit) | Class (4 digit) | Sub-Class (5 digit) |
 |:---|:---|:---|:---|:---|:---|
 | 11th | 21 | 77 | 234 | 501 | 1,205 |
 | 10th | 21 | 77 | 232 | 495 | 1,196 |
