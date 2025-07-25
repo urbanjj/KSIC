@@ -31,41 +31,64 @@ ksic_group <- function(ksic, digit = 1, C = NULL, name = FALSE) {
   if (!p_C %in% c(9, 10, 11)) stop("Value of 'C' (revision) must be one of 9, 10, 11.")
   if (!is.character(ksic)) stop("Value of 'ksic' must be a character vector.")
 
-  # Pre-filter data for the corresponding revision
-  ksic_c_str <- paste0("C", p_C)
-  tree_subset <- ksicTreeDB[ksicTreeDB$ksic_C == ksic_c_str, ]
+  # Create a result vector that preserves the original order
+  final_result_map <- rep(NA, length(ksic))
+  
+  # Validate KSIC codes
+  is_valid <- is_ksic(ksic)[paste0('C',p_C)][,1]
 
-  # Create a factor for grouping by digit
-  ksic_nchars <- nchar(ksic)
-  
-  # Apply split + lapply + unsplit pattern
-  ksic_groups <- split(ksic, ksic_nchars)
-  
-  result_groups <- lapply(names(ksic_groups), function(p_k_str) {
-    p_k <- as.integer(p_k_str)
-    sub_ksic <- ksic_groups[[p_k_str]]
-    
-    # Process codes with fewer digits than requested as NA
-    if (p_k < p_d) {
-      return(rep(NA, length(sub_ksic)))
-    }
+  # Warn for any invalid codes
+  if (any(!is_valid)) {
+    message(paste("Invalid KSIC codes detected and will be returned as NA:", 
+                  paste(unique(ksic[!is_valid]), collapse = ", ")))
+  }
 
-    from_col <- paste0("ksic", p_k, "_cd")
-    to_cd_col <- paste0("ksic", p_d, "_cd")
-    to_nm_col <- paste0("ksic", p_d, "_nm")
+  # Filter to process only the valid codes
+  valid_ksic_codes <- ksic[is_valid]
+
+  if (length(valid_ksic_codes) > 0) {
+    # Pre-filter data for the corresponding revision
+    ksic_c_str <- paste0("C", p_C)
+    tree_subset <- ksicTreeDB[ksicTreeDB$ksic_C == ksic_c_str, ]
+
+    # Create a factor for grouping by digit
+    ksic_nchars <- nchar(valid_ksic_codes)
     
-    mapping_table <- unique(tree_subset[, c(from_col, to_cd_col, to_nm_col)])
-    names(mapping_table) <- c("j", "cd", "nm")
+    # Apply split + lapply + unsplit pattern
+    ksic_groups <- split(valid_ksic_codes, ksic_nchars)
     
-    match_indices <- match(sub_ksic, mapping_table$j)
+    result_groups <- lapply(names(ksic_groups), function(p_k_str) {
+      p_k <- as.integer(p_k_str)
+      sub_ksic <- ksic_groups[[p_k_str]]
+      
+      # Process codes with fewer digits than requested as NA
+      if (p_k < p_d) {
+        return(rep(NA, length(sub_ksic)))
+      }
+
+      from_col <- paste0("ksic", p_k, "_cd")
+      to_cd_col <- paste0("ksic", p_d, "_cd")
+      to_nm_col <- paste0("ksic", p_d, "_nm")
+      
+      mapping_table <- unique(tree_subset[, c(from_col, to_cd_col, to_nm_col)])
+      names(mapping_table) <- c("j", "cd", "nm")
+      
+      match_indices <- match(sub_ksic, mapping_table$j)
+      
+      if (name) {
+        return(mapping_table$nm[match_indices])
+      } else {
+        return(mapping_table$cd[match_indices])
+      }
+    })
     
-    if (name) {
-      return(mapping_table$nm[match_indices])
-    } else {
-      return(mapping_table$cd[match_indices])
-    }
-  })
+    # Combine results for valid codes
+    processed_results <- unsplit(result_groups, ksic_nchars)
+    
+    # Place the valid results into our final map
+    final_result_map[is_valid] <- processed_results
+  }
   
-  # Combine results in the original order
-  return(unsplit(result_groups, ksic_nchars))
+  # Return the final result vector
+  return(final_result_map)
 }

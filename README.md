@@ -31,15 +31,16 @@ devtools::install_github("urbanjj/KSIC")
 
 ## Data
 
-This package includes several built-in datasets to support the functions.
+This package includes several built-in datasets to support the
+functions.
 
 이 패키지에는 함수를 지원하기 위한 여러 내장 데이터셋이 포함되어 있습니다.
 
-This table shows the number of categories in each KSIC revision
+This table shows the number of categories in each KSIC revision.
 
 KSIC 개정별 각 분류의 개수를 나타낸 표입니다.
 
-| revision | Section(Alphabet) | Division (2 digit) | Group (3 digit) | Class (4 digit) | Sub-Class (5 digit) |
+| revision | Section(Alphabet) | Division(2 digit) | Group (3 digit) | Class (4 digit) | Sub-Class (5 digit) |
 |:---|:---|:---|:---|:---|:---|
 | 11th | 21 | 77 | 234 | 501 | 1,205 |
 | 10th | 21 | 77 | 232 | 495 | 1,196 |
@@ -91,17 +92,14 @@ options(ksic.C = 10)
 # Now, ksic() and other functions will use C = 10 by default
 # 이제 ksic() 및 다른 함수들은 기본적으로 C = 10을 사용합니다.
 head(ksic(digit = 1))
-```
+#>      cd                                              nm digit ksic_C
+#> 2039  A                       농업, 임업 및 어업(01~03)     1    C10
+#> 2040  B                                     광업(05~08)     1    C10
+#> 2041  C                                   제조업(10~34)     1    C10
+#> 2042  D         전기, 가스, 증기 및 공기조절 공급업(35)     1    C10
+#> 2043  E 수도, 하수 및 폐기물 처리, 원료 재생업(36 ~ 39)     1    C10
+#> 2044  F                                   건설업(41~42)     1    C10
 
-    ##      cd                                              nm digit ksic_C
-    ## 2039  A                       농업, 임업 및 어업(01~03)     1    C10
-    ## 2040  B                                     광업(05~08)     1    C10
-    ## 2041  C                                   제조업(10~34)     1    C10
-    ## 2042  D         전기, 가스, 증기 및 공기조절 공급업(35)     1    C10
-    ## 2043  E 수도, 하수 및 폐기물 처리, 원료 재생업(36 ~ 39)     1    C10
-    ## 2044  F                                   건설업(41~42)     1    C10
-
-``` r
 # Reset to the default (11th revision)
 # 기본값(11차)으로 재설정
 options(ksic.C = 11)
@@ -128,35 +126,31 @@ and digit level. The default revision is 11.
 ``` r
 # Get 1-digit codes from the default 11th revision
 head(ksic(digit = 1))
-```
+#>   cd                                              nm digit ksic_C
+#> 1  A                       농업, 임업 및 어업(01~03)     1    C11
+#> 2  B                                     광업(05~08)     1    C11
+#> 3  C                                   제조업(10~34)     1    C11
+#> 4  D         전기, 가스, 증기 및 공기조절 공급업(35)     1    C11
+#> 5  E 수도, 하수 및 폐기물 처리, 원료 재생업(36 ~ 39)     1    C11
+#> 6  F                                   건설업(41~42)     1    C11
 
-    ##   cd                                              nm digit ksic_C
-    ## 1  A                       농업, 임업 및 어업(01~03)     1    C11
-    ## 2  B                                     광업(05~08)     1    C11
-    ## 3  C                                   제조업(10~34)     1    C11
-    ## 4  D         전기, 가스, 증기 및 공기조절 공급업(35)     1    C11
-    ## 5  E 수도, 하수 및 폐기물 처리, 원료 재생업(36 ~ 39)     1    C11
-    ## 6  F                                   건설업(41~42)     1    C11
-
-``` r
 # Get 1-digit codes including English names
 head(ksic(digit = 1, eng_nm = TRUE))
+#>   cd                                              nm
+#> 1  A                       농업, 임업 및 어업(01~03)
+#> 2  B                                     광업(05~08)
+#> 3  C                                   제조업(10~34)
+#> 4  D         전기, 가스, 증기 및 공기조절 공급업(35)
+#> 5  E 수도, 하수 및 폐기물 처리, 원료 재생업(36 ~ 39)
+#> 6  F                                   건설업(41~42)
+#>                                                       eng_nm digit ksic_C
+#> 1                          Agriculture, forestry and fishing     1    C11
+#> 2                                       Mining and quarrying     1    C11
+#> 3                                              Manufacturing     1    C11
+#> 4        Electricity, gas, steam and air conditioning supply     1    C11
+#> 5 Water supply; sewage, waste management, materials recovery     1    C11
+#> 6                                               Construction     1    C11
 ```
-
-    ##   cd                                              nm
-    ## 1  A                       농업, 임업 및 어업(01~03)
-    ## 2  B                                     광업(05~08)
-    ## 3  C                                   제조업(10~34)
-    ## 4  D         전기, 가스, 증기 및 공기조절 공급업(35)
-    ## 5  E 수도, 하수 및 폐기물 처리, 원료 재생업(36 ~ 39)
-    ## 6  F                                   건설업(41~42)
-    ##                                                       eng_nm digit ksic_C
-    ## 1                          Agriculture, forestry and fishing     1    C11
-    ## 2                                       Mining and quarrying     1    C11
-    ## 3                                              Manufacturing     1    C11
-    ## 4        Electricity, gas, steam and air conditioning supply     1    C11
-    ## 5 Water supply; sewage, waste management, materials recovery     1    C11
-    ## 6                                               Construction     1    C11
 
 ### `is_ksic()`
 
@@ -169,37 +163,47 @@ Checks whether input codes are valid KSIC codes for the 9th, 10th, and
 
 ``` r
 is_ksic(c("A", "01", "99999", "invalid_code"))
+#>          input   C11   C10    C9
+#> 1            A  TRUE  TRUE  TRUE
+#> 2           01  TRUE  TRUE  TRUE
+#> 3        99999 FALSE FALSE FALSE
+#> 4 invalid_code FALSE FALSE FALSE
 ```
-
-    ##          input   C11   C10    C9
-    ## 1            A  TRUE  TRUE  TRUE
-    ## 2           01  TRUE  TRUE  TRUE
-    ## 3        99999 FALSE FALSE FALSE
-    ## 4 invalid_code FALSE FALSE FALSE
 
 ### `ksic_group()`
 
 Extracts the parent (upper-level) classification codes or names for a
 vector of KSIC codes. The default revision is 11.
 
-주어진 KSIC 코드 벡터에 대한 상위 분류 코드 또는 이름을 추출합니다. 기본 차수는 11차입니다.
+주어진 KSIC 코드 벡터에 대한 상위 분류 코드 또는 이름을 추출합니다. 기본 차수는
+11차입니다.
 
 **Key Features & Advantages / 주요 특징 및 장점:**
 - **Flexible Input**: Handles vectors with mixed-digit codes (e.g., `c("011", "2622")`).
-- **유연한 입력**: 자릿수가 다른 코드들이 섞인 벡터(예: `c("011", "2622")`)도 처리할 수 있습니다.
+-**유연한 입력**: 자릿수가 다른 코드들이 섞인 벡터(예:`c("011", "2622")`)도 처리할 수 있습니다.
 - **Efficient**: Uses an optimized `split-lapply-unsplit` pattern for fast lookups.
-- **효율성**: 최적화된 `split-lapply-unsplit` 패턴을 사용하여 빠른 조회를 보장합니다.
+- **효율성**: 최적화된 `split-lapply-unsplit` 패턴을 사용하여 빠른 조회를
+보장합니다.
+- **Input Validation**: Message the user if invalid KSIC codes are provided and returns `NA` for those entries, ensuring robust and predictable behavior.
+- **입력값 검증**: 유효하지 않은 KSIC 코드가 입력되면 사용자에게 메시지를 표시하고 해당 항목에 대해 `NA`를 반환하여, 안정적이고 예측 가능한 동작을 보장합니다.
 
 **Example / 사용 예시:**
 
 ``` r
 ksic_group(c("31311", "4631", "25", "A"), digit = 2, name = TRUE)
-```
+#> [1] "기타 운송장비 제조업"                   
+#> [2] "도매 및 상품 중개업"                    
+#> [3] "금속 가공제품 제조업; 기계 및 가구 제외"
+#> [4] NA
 
-    ## [1] "기타 운송장비 제조업"                   
-    ## [2] "도매 및 상품 중개업"                    
-    ## [3] "금속 가공제품 제조업; 기계 및 가구 제외"
-    ## [4] NA
+# Example with an invalid code
+# 잘못된 코드가 포함된 예시
+ksic_group(c("26222", "99999", "58221"), digit = 2, name = TRUE)
+#> Invalid KSIC codes detected and will be returned as NA: 99999
+#> [1] "전자 부품, 컴퓨터, 영상, 음향 및 통신장비 제조업"
+#> [2] NA                                                
+#> [3] "출판업"
+```
 
 ### `ksic_sub()`
 
@@ -213,23 +217,39 @@ vector of KSIC codes. The default revision is 11.
 - **포괄적인 출력**: 각 입력 코드에 해당하는 하위 코드 벡터를 담은 `리스트`를 반환합니다.
 - **Flexible Input**: Handles vectors with mixed-digit codes.
 - **유연한 입력**: 자릿수가 다른 코드가 섞인 벡터도 처리합니다.
+- **Input Validation**: Message the user if invalid KSIC codes are provided and returns `NA` for those entries, ensuring robust and predictable behavior.
+- **입력값 검증**: 유효하지 않은 KSIC 코드가 입력되면 사용자에게 메시지를 표시하고 해당 항목에 대해 `NA`를 반환하여, 안정적이고 예측 가능한 동작을 보장합니다.
 
 **Example / 사용 예시:**
 
 ``` r
 result_list <- ksic_sub(c("26","96","52636"), digit = 4)
+#> Invalid KSIC codes detected and will be returned as NA: 52636
 print(result_list)
-```
+#> $`26`
+#>  [1] "2632" "2641" "2642" "2631" "2612" "2621" "2622" "2651" "2611" "2652"
+#> [11] "2660" "2629"
+#> 
+#> $`96`
+#> [1] "9611" "9612" "9691" "9692" "9699"
+#> 
+#> $`52636`
+#> [1] NA
 
-    ## $`26`
-    ##  [1] "2632" "2641" "2642" "2631" "2612" "2621" "2622" "2651" "2611" "2652"
-    ## [11] "2660" "2629"
-    ## 
-    ## $`96`
-    ## [1] "9611" "9612" "9691" "9692" "9699"
-    ## 
-    ## $`52636`
-    ## [1] NA
+# Example with an invalid code
+# 잘못된 코드가 포함된 예시
+ksic_sub(c("26", "99999", "58"), digit = 4)
+#> Invalid KSIC codes detected and will be returned as NA: 99999
+#> $`26`
+#>  [1] "2621" "2622" "2629" "2612" "2631" "2632" "2641" "2642" "2651" "2652"
+#> [11] "2660" "2611"
+#> 
+#> $`99999`
+#> [1] NA
+#> 
+#> $`58`
+#> [1] "5812" "5819" "5821" "5822" "5811"
+```
 
 ### `ksic_convert()`
 
@@ -256,28 +276,24 @@ Converts KSIC codes from one revision to another.
 ``` r
 # Convert 10th revision codes to 11th revision
 ksic_convert(c("27192", "27195"), from_C = 10, to_C = 11)
-```
+#>     ksic10_cd                              ksic10_nm ksic11_cd
+#> 387     27192 정형 외과용 및 신체 보정용 기기 제조업     27192
+#> 388     27192 정형 외과용 및 신체 보정용 기기 제조업     27193
+#> 389     27192 정형 외과용 및 신체 보정용 기기 제조업     27194
+#>                                  ksic11_nm detail
+#> 387                      치과기공물 제조업   세분
+#> 388                 치과용 임플란트 제조업   세분
+#> 389 정형 외과용 및 신체 보정용 기기 제조업   세분
 
-    ##     ksic10_cd                              ksic10_nm ksic11_cd
-    ## 387     27192 정형 외과용 및 신체 보정용 기기 제조업     27192
-    ## 388     27192 정형 외과용 및 신체 보정용 기기 제조업     27193
-    ## 389     27192 정형 외과용 및 신체 보정용 기기 제조업     27194
-    ##                                  ksic11_nm detail
-    ## 387                      치과기공물 제조업   세분
-    ## 388                 치과용 임플란트 제조업   세분
-    ## 389 정형 외과용 및 신체 보정용 기기 제조업   세분
-
-``` r
 # Convert 11th revision codes to 10th revision
 ksic_convert(c("27192", "27195"), from_C = 11, to_C = 10)
+#>     ksic11_cd               ksic11_nm ksic10_cd
+#> 387     27192       치과기공물 제조업     27192
+#> 390     27195 안경 및 안경렌즈 제조업     27193
+#>                                  ksic10_nm   detail
+#> 387 정형 외과용 및 신체 보정용 기기 제조업     세분
+#> 390                안경 및 안경렌즈 제조업 코드변경
 ```
-
-    ##     ksic11_cd               ksic11_nm ksic10_cd
-    ## 387     27192       치과기공물 제조업     27192
-    ## 390     27195 안경 및 안경렌즈 제조업     27193
-    ##                                  ksic10_nm   detail
-    ## 387 정형 외과용 및 신체 보정용 기기 제조업     세분
-    ## 390                안경 및 안경렌즈 제조업 코드변경
 
 ### `ksic_search()`
 
@@ -291,51 +307,47 @@ names.
 ``` r
 # Search for classifications containing "소프트웨어" in the 11th revision
 ksic_search("소프트웨어")
-```
+#>         cd                                                nm digit ksic_C
+#> 1120  4651             컴퓨터 및 주변장치, 소프트웨어 도매업     4    C11
+#> 1121 46510             컴퓨터 및 주변장치, 소프트웨어 도매업     5    C11
+#> 1205  4731 컴퓨터 및 주변장치, 소프트웨어 및 통신기기 소매업     4    C11
+#> 1206 47311             컴퓨터 및 주변장치, 소프트웨어 소매업     5    C11
+#> 1436   582                         소프트웨어 개발 및 공급업     3    C11
+#> 1437  5821                    게임 소프트웨어 개발 및 공급업     4    C11
+#> 1438 58211        유선 온라인 게임 소프트웨어 개발 및 공급업     5    C11
+#> 1439 58212             모바일 게임 소프트웨어 개발 및 공급업     5    C11
+#> 1440 58219               기타 게임 소프트웨어 개발 및 공급업     5    C11
+#> 1441  5822            시스템ㆍ응용 소프트웨어 개발 및 공급업     4    C11
+#> 1442 58221                  시스템 소프트웨어 개발 및 공급업     5    C11
+#> 1443 58222                    응용 소프트웨어 개발 및 공급업     5    C11
 
-    ##         cd                                                nm digit ksic_C
-    ## 1120  4651             컴퓨터 및 주변장치, 소프트웨어 도매업     4    C11
-    ## 1121 46510             컴퓨터 및 주변장치, 소프트웨어 도매업     5    C11
-    ## 1205  4731 컴퓨터 및 주변장치, 소프트웨어 및 통신기기 소매업     4    C11
-    ## 1206 47311             컴퓨터 및 주변장치, 소프트웨어 소매업     5    C11
-    ## 1436   582                         소프트웨어 개발 및 공급업     3    C11
-    ## 1437  5821                    게임 소프트웨어 개발 및 공급업     4    C11
-    ## 1438 58211        유선 온라인 게임 소프트웨어 개발 및 공급업     5    C11
-    ## 1439 58212             모바일 게임 소프트웨어 개발 및 공급업     5    C11
-    ## 1440 58219               기타 게임 소프트웨어 개발 및 공급업     5    C11
-    ## 1441  5822            시스템ㆍ응용 소프트웨어 개발 및 공급업     4    C11
-    ## 1442 58221                  시스템 소프트웨어 개발 및 공급업     5    C11
-    ## 1443 58222                    응용 소프트웨어 개발 및 공급업     5    C11
-
-``` r
 # Search for 5-digit classifications containing "software" in the 10th revision (case-sensitive)
 ksic_search("software", C = 10, ignore.case = FALSE, digit = 5)
+#>         cd                                         nm
+#> 3155 46510      컴퓨터 및 주변장치, 소프트웨어 도매업
+#> 3238 47311      컴퓨터 및 주변장치, 소프트웨어 소매업
+#> 3467 58211 유선 온라인 게임 소프트웨어 개발 및 공급업
+#> 3468 58212      모바일 게임 소프트웨어 개발 및 공급업
+#> 3469 58219        기타 게임 소프트웨어 개발 및 공급업
+#> 3471 58221           시스템 소프트웨어 개발 및 공급업
+#> 3472 58222             응용 소프트웨어 개발 및 공급업
+#>                                                                    eng_nm digit
+#> 3155   Wholesale of computers, computer peripheral equipment and software     5
+#> 3238 Retail sale of computers, computer peripheral equipment and software     5
+#> 3467                                      Online game software publishing     5
+#> 3468                                      Mobile game software publishing     5
+#> 3469                                       Other game software publishing     5
+#> 3471                                           System software publishing     5
+#> 3472                                      Application software publishing     5
+#>      ksic_C
+#> 3155    C10
+#> 3238    C10
+#> 3467    C10
+#> 3468    C10
+#> 3469    C10
+#> 3471    C10
+#> 3472    C10
 ```
-
-    ##         cd                                         nm
-    ## 3155 46510      컴퓨터 및 주변장치, 소프트웨어 도매업
-    ## 3238 47311      컴퓨터 및 주변장치, 소프트웨어 소매업
-    ## 3467 58211 유선 온라인 게임 소프트웨어 개발 및 공급업
-    ## 3468 58212      모바일 게임 소프트웨어 개발 및 공급업
-    ## 3469 58219        기타 게임 소프트웨어 개발 및 공급업
-    ## 3471 58221           시스템 소프트웨어 개발 및 공급업
-    ## 3472 58222             응용 소프트웨어 개발 및 공급업
-    ##                                                                    eng_nm digit
-    ## 3155   Wholesale of computers, computer peripheral equipment and software     5
-    ## 3238 Retail sale of computers, computer peripheral equipment and software     5
-    ## 3467                                      Online game software publishing     5
-    ## 3468                                      Mobile game software publishing     5
-    ## 3469                                       Other game software publishing     5
-    ## 3471                                           System software publishing     5
-    ## 3472                                      Application software publishing     5
-    ##      ksic_C
-    ## 3155    C10
-    ## 3238    C10
-    ## 3467    C10
-    ## 3468    C10
-    ## 3469    C10
-    ## 3471    C10
-    ## 3472    C10
 
 ------------------------------------------------------------------------
 
@@ -356,13 +368,12 @@ my_data <- data.frame(
 
 my_data$ksic2_nm <- ksic_group(my_data$ksic5_cd, digit = 2, name = TRUE)
 print(my_data)
+#>   company ksic5_cd                                         ksic2_nm
+#> 1       A    26222 전자 부품, 컴퓨터, 영상, 음향 및 통신장비 제조업
+#> 2       B    58221                                           출판업
+#> 3       C    26299 전자 부품, 컴퓨터, 영상, 음향 및 통신장비 제조업
+#> 4       D    61220                                   우편 및 통신업
 ```
-
-    ##   company ksic5_cd                                         ksic2_nm
-    ## 1       A    26222 전자 부품, 컴퓨터, 영상, 음향 및 통신장비 제조업
-    ## 2       B    58221                                           출판업
-    ## 3       C    26299 전자 부품, 컴퓨터, 영상, 음향 및 통신장비 제조업
-    ## 4       D    61220                                   우편 및 통신업
 
 ### Finding All Sub-Industries with `ksic_sub`
 
@@ -391,17 +402,14 @@ sub_categories_df_base <- data.frame(
   ksic5_nm = unlist(sub_names_list, use.names = FALSE)
 )
 print(head(sub_categories_df_base))
-```
+#>   ksic2_cd ksic5_cd                            ksic5_nm
+#> 1       58    58113                    일반 서적 출판업
+#> 2       58    58123              정기 광고간행물 발행업
+#> 3       58    58190                  기타 인쇄물 출판업
+#> 4       58    58121                         신문 발행업
+#> 5       58    58122           잡지 및 정기간행물 발행업
+#> 6       58    58219 기타 게임 소프트웨어 개발 및 공급업
 
-    ##   ksic2_cd ksic5_cd                            ksic5_nm
-    ## 1       58    58113                    일반 서적 출판업
-    ## 2       58    58123              정기 광고간행물 발행업
-    ## 3       58    58190                  기타 인쇄물 출판업
-    ## 4       58    58121                         신문 발행업
-    ## 5       58    58122           잡지 및 정기간행물 발행업
-    ## 6       58    58219 기타 게임 소프트웨어 개발 및 공급업
-
-``` r
 # --- Tidyverse Approach ---
 # A more concise approach using the tidyverse (tidyr, tibble)
 # tidyverse(tidyr, tibble)를 사용한 방법 (더 간결함)
@@ -417,28 +425,24 @@ nested_tibble <- tibble::tibble(
 )
 # Step 1: Nested tibble (before unnesting)"
 print(nested_tibble)
-```
+#> # A tibble: 2 × 3
+#>   ksic2_cd ksic5_cd     ksic5_nm    
+#>   <chr>    <named list> <named list>
+#> 1 58       <chr [12]>   <chr [12]>  
+#> 2 61       <chr [5]>    <chr [5]>
 
-    ## # A tibble: 2 × 3
-    ##   ksic2_cd ksic5_cd     ksic5_nm    
-    ##   <chr>    <named list> <named list>
-    ## 1 58       <chr [12]>   <chr [12]>  
-    ## 2 61       <chr [5]>    <chr [5]>
-
-``` r
 # 2. Use tidyr::unnest() to expand the list-columns into regular rows
 # 2. tidyr::unnest()를 사용하여 리스트 열을 일반적인 행으로 펼침
 unnested_df <- tidyr::unnest(nested_tibble, cols = c(ksic5_cd, ksic5_nm))
 # Step 2: Unnested tibble (final result)"
 print(head(unnested_df))
+#> # A tibble: 6 × 3
+#>   ksic2_cd ksic5_cd ksic5_nm                           
+#>   <chr>    <chr>    <chr>                              
+#> 1 58       58113    일반 서적 출판업                   
+#> 2 58       58123    정기 광고간행물 발행업             
+#> 3 58       58190    기타 인쇄물 출판업                 
+#> 4 58       58121    신문 발행업                        
+#> 5 58       58122    잡지 및 정기간행물 발행업          
+#> 6 58       58219    기타 게임 소프트웨어 개발 및 공급업
 ```
-
-    ## # A tibble: 6 × 3
-    ##   ksic2_cd ksic5_cd ksic5_nm                           
-    ##   <chr>    <chr>    <chr>                              
-    ## 1 58       58113    일반 서적 출판업                   
-    ## 2 58       58123    정기 광고간행물 발행업             
-    ## 3 58       58190    기타 인쇄물 출판업                 
-    ## 4 58       58121    신문 발행업                        
-    ## 5 58       58122    잡지 및 정기간행물 발행업          
-    ## 6 58       58219    기타 게임 소프트웨어 개발 및 공급업

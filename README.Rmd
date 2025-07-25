@@ -4,8 +4,7 @@ output: github_document
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-```{
-r, include = FALSE}
+```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
@@ -129,10 +128,16 @@ Extracts the parent (upper-level) classification codes or names for a vector of 
 - **유연한 입력**: 자릿수가 다른 코드들이 섞인 벡터(예: `c("011", "2622")`)도 처리할 수 있습니다.
 - **Efficient**: Uses an optimized `split-lapply-unsplit` pattern for fast lookups.
 - **효율성**: 최적화된 `split-lapply-unsplit` 패턴을 사용하여 빠른 조회를 보장합니다.
+- **Input Validation**: Message the user if invalid KSIC codes are provided and returns `NA` for those entries, ensuring robust and predictable behavior.
+- **입력값 검증**: 유효하지 않은 KSIC 코드가 입력되면 사용자에게 메시지를 표시하고 해당 항목에 대해 `NA`를 반환하여, 안정적이고 예측 가능한 동작을 보장합니다.
 
 **Example / 사용 예시:**
 ```{r}
 ksic_group(c("31311", "4631", "25", "A"), digit = 2, name = TRUE)
+
+# Example with an invalid code
+# 잘못된 코드가 포함된 예시
+ksic_group(c("26222", "99999", "58221"), digit = 2, name = TRUE)
 ```
 
 ### `ksic_sub()`
@@ -145,11 +150,17 @@ Extracts all child (lower-level) classification codes or names for a vector of K
 - **포괄적인 출력**: 각 입력 코드에 해당하는 하위 코드 벡터를 담은 `리스트`를 반환합니다.
 - **Flexible Input**: Handles vectors with mixed-digit codes.
 - **유연한 입력**: 자릿수가 다른 코드가 섞인 벡터도 처리합니다.
+- **Input Validation**: Message the user if invalid KSIC codes are provided and returns `NA` for those entries, ensuring robust and predictable behavior.
+- **입력값 검증**: 유효하지 않은 KSIC 코드가 입력되면 사용자에게 메시지를 표시하고 해당 항목에 대해 `NA`를 반환하여, 안정적이고 예측 가능한 동작을 보장합니다.
 
 **Example / 사용 예시:**
 ```{r}
 result_list <- ksic_sub(c("26","96","52636"), digit = 4)
 print(result_list)
+
+# Example with an invalid code
+# 잘못된 코드가 포함된 예시
+ksic_sub(c("26", "99999", "58"), digit = 4)
 ```
 
 ### `ksic_convert()`
