@@ -180,7 +180,7 @@ vector of KSIC codes. The default revision is 11.
 
 **Key Features & Advantages / 주요 특징 및 장점:**
 - **Flexible Input**: Handles vectors with mixed-digit codes (e.g., `c("011", "2622")`).
--**유연한 입력**: 자릿수가 다른 코드들이 섞인 벡터(예:`c("011", "2622")`)도 처리할 수 있습니다.
+- **유연한 입력**: 자릿수가 다른 코드들이 섞인 벡터(예:`c("011", "2622")`)도 처리할 수 있습니다.
 - **Efficient**: Uses an optimized `split-lapply-unsplit` pattern for fast lookups.
 - **효율성**: 최적화된 `split-lapply-unsplit` 패턴을 사용하여 빠른 조회를
 보장합니다.
