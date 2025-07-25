@@ -69,7 +69,7 @@ ksic_sub <- function(ksic, digit = 5, C = NULL, name = FALSE) {
 
       # If the requested digit is smaller than the input code's digit, return an empty list
       if (p_d < p_k) {
-        return(sapply(sub_ksic, function(x) character(0), USE.NAMES = TRUE))
+        return(sapply(sub_ksic, function(x) NA, USE.NAMES = TRUE))
       }
 
       # Create a mapping table for merging
