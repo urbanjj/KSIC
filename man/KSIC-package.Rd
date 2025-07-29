@@ -6,7 +6,7 @@
 \alias{KSIC-package}
 \title{KSIC: Korea Standard Industry Code (KSIC) Data}
 \description{
-Provides data and functions for using the Korea Standard Industrial Classification (KSIC) codes.
+This package offers a comprehensive toolkit for working with the Korea Standard Industrial Classification (KSIC). It includes complete datasets for the 9th, 10th, and 11th revisions of the KSIC. Key features include functions to search codes and names by keyword, convert codes across different revisions, validate KSIC codes, and navigate the classification hierarchy by identifying parent or child categories. The package is designed to support statistical analysis, data processing, and research related to South Korea's industrial classification standards.
 }
 \seealso{
 Useful links:

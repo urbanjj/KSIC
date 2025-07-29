@@ -189,11 +189,7 @@ file.copy('./data/ksic_10_to_11.rda','./data-raw/ksic_10_to_11.rda', overwrite =
 file.copy('./data/ksic_11_to_10.rda','./data-raw/ksic_11_to_10.rda', overwrite = TRUE)
 
 
-ksicDB_C9_codes <- ksicDB[ksicDB$ksic_C == "C9", "cd"]
-ksicDB_C10_codes <- ksicDB[ksicDB$ksic_C == "C10", "cd"]
-ksicDB_C11_codes <- ksicDB[ksicDB$ksic_C == "C11", "cd"]
-
-save(ksic_9_to_10, ksic_10_to_9, ksic_10_to_11, ksic_11_to_10, ksicDB_C9_codes, ksicDB_C10_codes, ksicDB_C11_codes, file = "R/sysdata.rda", compress = "xz")
+save(ksic_9_to_10, ksic_10_to_9, ksic_10_to_11, ksic_11_to_10, file = "R/sysdata.rda", compress = "xz")
 
 unlink('./data-raw/9th',recursive = TRUE)
 unlink('./data-raw/10th',recursive = TRUE)

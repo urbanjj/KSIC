@@ -15,16 +15,16 @@
 ksic_convert <- function(ksic, from_C, to_C) {
   # Input validation
   if (!is.character(ksic)) {
-    stop("Value of 'ksic' must be a character vector.")
+    stop("Invalid 'ksic' parameter. Must be a character vector.")
   }
   if (!all(nchar(ksic) == 5)) {
-    stop("All KSIC codes in 'ksic' must be 5-digit codes (e.g., '10111').")
+    stop("Invalid 'ksic' parameter. All codes must be 5-digit strings.")
   }
   if (!from_C %in% c(9, 10, 11)) {
-    stop("Value of 'from_C' must be 9, 10, or 11.")
+    stop("Invalid 'from_C' parameter. Must be 9, 10, or 11.")
   }
   if (!to_C %in% c(9, 10, 11)) {
-    stop("Value of 'to_C' must be 9, 10, or 11.")
+    stop("Invalid 'to_C' parameter. Must be 9, 10, or 11.")
   }
   if (from_C == to_C) {
     message("Source and target KSIC revisions are the same. Returning original codes.")

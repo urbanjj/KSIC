@@ -10,9 +10,14 @@ is_ksic <- function(ksic){
   if (!is.character(ksic)) {
     stop("Value of 'ksic' must be character.")
   }
-  # Use pre-generated internal data for performance
+  
+  # Use the main ksicDB for validation
+  C11_valid <- ksic %in% ksicDB$cd[ksicDB$ksic_C == "C11"]
+  C10_valid <- ksic %in% ksicDB$cd[ksicDB$ksic_C == "C10"]
+  C9_valid  <- ksic %in% ksicDB$cd[ksicDB$ksic_C == "C9"]
+  
   data.frame(input = ksic,
-             C11 = ksic %in% ksicDB_C11_codes,
-             C10 = ksic %in% ksicDB_C10_codes,
-             C9 = ksic %in% ksicDB_C9_codes)
+             C11 = C11_valid,
+             C10 = C10_valid,
+             C9 = C9_valid)
 }

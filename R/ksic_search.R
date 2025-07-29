@@ -58,7 +58,8 @@ ksic_search <- function(keyword, C = NULL, ignore.case = TRUE, digit = NULL) {
 
   if (nrow(result_df) == 0) {
     message("No matching results found.")
-    return(invisible(NULL))
+    # Return an empty data.frame with the same structure
+    return(db_subset[0, ])
   }
 
   # Exclude English name column when searching with a Korean keyword

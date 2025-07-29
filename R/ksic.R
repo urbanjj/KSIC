@@ -22,12 +22,14 @@ ksic <- function(digit = 5, C = NULL, eng_nm = FALSE) {
   }
 
   if (!p_d %in% 1:5) {
-    stop("Value of 'digit' must be numeric of 1,2,3,4 and 5.")
-  } else if (!p_C %in% c(9, 10, 11)) {
-    stop("Value of 'C' must be numeric of 9, 10, and 11.")
-  } else {
-    # Filter data
-    result <- ksicDB[(ksicDB$ksic_C == paste0("C", p_C)) & (ksicDB$digit == p_d), ]
+    stop("Invalid 'digit' parameter. Must be an integer between 1 and 5.")
+  }
+  if (!p_C %in% c(9, 10, 11)) {
+    stop("Invalid 'C' parameter. Must be 9, 10, or 11.")
+  }
+
+  # Filter data
+  result <- ksicDB[(ksicDB$ksic_C == paste0("C", p_C)) & (ksicDB$digit == p_d), ]
     
     # Exclude English name column based on eng_nm parameter
     if (!eng_nm) {
@@ -35,5 +37,4 @@ ksic <- function(digit = 5, C = NULL, eng_nm = FALSE) {
     }
     
     return(result)
-  }
 }

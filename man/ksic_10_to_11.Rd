@@ -5,7 +5,14 @@
 \alias{ksic_10_to_11}
 \title{KSIC 10th to 11th Concordance Table}
 \format{
-A data frame with columns for 10th codes, 11th codes, and connection details.
+A data frame with 5 columns:
+\describe{
+\item{ksic10_cd}{10th revision KSIC code.}
+\item{ksic10_nm}{10th revision KSIC name.}
+\item{ksic11_cd}{11th revision KSIC code.}
+\item{ksic11_nm}{11th revision KSIC name.}
+\item{detail}{Additional details about the connection.}
+}
 }
 \usage{
 ksic_10_to_11

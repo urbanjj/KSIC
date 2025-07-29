@@ -27,9 +27,15 @@ ksic_sub <- function(ksic, digit = 5, C = NULL, name = FALSE) {
     p_C <- as.integer(C)
   }
 
-  if (!p_d %in% 1:5) stop("Value of 'digit' must be one of 1, 2, 3, 4, 5.")
-  if (!p_C %in% c(9, 10, 11)) stop("Value of 'C' (revision) must be one of 9, 10, 11.")
-  if (!is.character(ksic)) stop("Value of 'ksic' must be a character vector.")
+  if (!is.character(ksic)) {
+    stop("Invalid 'ksic' parameter. Must be a character vector.")
+  }
+  if (!p_d %in% 1:5) {
+    stop("Invalid 'digit' parameter. Must be an integer between 1 and 5.")
+  }
+  if (!p_C %in% c(9, 10, 11)) {
+    stop("Invalid 'C' parameter. Must be 9, 10, or 11.")
+  }
 
   # Create a result list that preserves the original order and names
   final_result_map <- vector("list", length(ksic))
