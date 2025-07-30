@@ -15,5 +15,7 @@ LazyData: true
 License: GPL (>= 3)
 Suggests: 
     knitr,
-    rmarkdown
+    rmarkdown,
+    tibble,
+    tidyr
 VignetteBuilder: knitr
