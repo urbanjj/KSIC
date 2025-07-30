@@ -4,9 +4,9 @@
 \name{KSIC-package}
 \alias{KSIC}
 \alias{KSIC-package}
-\title{KSIC: Korea Standard Industry Code (KSIC) Data}
+\title{KSIC: Korea Standard Industrial Classification (KSIC)}
 \description{
-This package offers a comprehensive toolkit for working with the Korea Standard Industrial Classification (KSIC). It includes complete datasets for the 9th, 10th, and 11th revisions of the KSIC. Key features include functions to search codes and names by keyword, convert codes across different revisions, validate KSIC codes, and navigate the classification hierarchy by identifying parent or child categories. The package is designed to support statistical analysis, data processing, and research related to South Korea's industrial classification standards.
+Provides tools for working with the Korea Standard Industrial Classification (KSIC). Includes datasets for the 9th, 10th, and 11th revisions. Functions include searching codes and names by keyword, converting codes across revisions, validating KSIC codes, and navigating the classification hierarchy (e.g., identifying parent or child categories). Intended for use in statistical analysis, data processing, and research involving South Korea’s industrial classification system.
 }
 \seealso{
 Useful links:
@@ -17,7 +17,7 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Jongjin Yun \email{jongjin@uos.ac.kr}
+\strong{Maintainer}: Jongjin Yun \email{jongjin@uos.ac.kr} (\href{https://orcid.org/0009-0000-0161-2285}{ORCID})
 
 }
 \keyword{internal}

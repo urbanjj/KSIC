@@ -3,6 +3,8 @@
 
 # KSIC(Korea Standard Industrial Classification) <br> 한국표준산업분류
 
+### *Jongjin Yun (2025-07-29)*
+
 This package provides tools to utilize the Korea Standard Industrial
 Classification (KSIC) in R.
 
@@ -34,13 +36,14 @@ devtools::install_github("urbanjj/KSIC")
 This package includes several built-in datasets to support the
 functions.
 
-이 패키지에는 함수를 지원하기 위한 여러 내장 데이터셋이 포함되어 있습니다.
+이 패키지에는 함수를 지원하기 위한 여러 내장 데이터셋이 포함되어
+있습니다.
 
 This table shows the number of categories in each KSIC revision.
 
 KSIC 개정별 각 분류의 개수를 나타낸 표입니다.
 
-| revision | Section(Alphabet) | Division(2 digit) | Group (3 digit) | Class (4 digit) | Sub-Class (5 digit) |
+| revision | Section <br> (Alphabet) | Division <br> (2 digit) | Group <br> (3 digit) | Class <br> (4 digit) | Sub-Class <br> (5 digit) |
 |:---|:---|:---|:---|:---|:---|
 | 11th | 21 | 77 | 234 | 501 | 1,205 |
 | 10th | 21 | 77 | 232 | 495 | 1,196 |
@@ -112,14 +115,16 @@ options(ksic.C = 11)
 This package offers four main functions designed for efficiency and
 flexibility.
 
-이 패키지는 효율성과 유연성을 고려하여 설계된 네 가지 주요 함수를 제공합니다.
+이 패키지는 효율성과 유연성을 고려하여 설계된 네 가지 주요 함수를
+제공합니다.
 
 ### `ksic()`
 
 Retrieves a `data.frame` of KSIC data filtered by a specific revision
 and digit level. The default revision is 11.
 
-특정 차수와 자릿수 수준으로 필터링된 KSIC 데이터프레임을 가져옵니다. 기본 차수는 11차입니다.
+특정 차수와 자릿수 수준으로 필터링된 KSIC 데이터프레임을 가져옵니다.
+기본 차수는 11차입니다.
 
 **Example / 사용 예시:**
 
@@ -175,17 +180,25 @@ is_ksic(c("A", "01", "99999", "invalid_code"))
 Extracts the parent (upper-level) classification codes or names for a
 vector of KSIC codes. The default revision is 11.
 
-주어진 KSIC 코드 벡터에 대한 상위 분류 코드 또는 이름을 추출합니다. 기본 차수는
-11차입니다.
+주어진 KSIC 코드 벡터에 대한 상위 분류 코드 또는 이름을 추출합니다. 기본
+차수는 11차입니다.
 
 **Key Features & Advantages / 주요 특징 및 장점:**
-- **Flexible Input**: Handles vectors with mixed-digit codes (e.g., `c("011", "2622")`).
-- **유연한 입력**: 자릿수가 다른 코드들이 섞인 벡터(예:`c("011", "2622")`)도 처리할 수 있습니다.
-- **Efficient**: Uses an optimized `split-lapply-unsplit` pattern for fast lookups.
-- **효율성**: 최적화된 `split-lapply-unsplit` 패턴을 사용하여 빠른 조회를
-보장합니다.
-- **Input Validation**: Message the user if invalid KSIC codes are provided and returns `NA` for those entries, ensuring robust and predictable behavior.
-- **입력값 검증**: 유효하지 않은 KSIC 코드가 입력되면 사용자에게 메시지를 표시하고 해당 항목에 대해 `NA`를 반환하여, 안정적이고 예측 가능한 동작을 보장합니다.
+
+- **Flexible Input**: Handles vectors with mixed-digit codes (e.g.,
+  `c("011", "2622")`).
+- **유연한 입력**: 자릿수가 다른 코드들이 섞인 벡터(예:
+  `c("011", "2622")`)도 처리할 수 있습니다.
+- **Efficient**: Uses an optimized `split-lapply-unsplit` pattern for
+  fast lookups.
+- **효율성**: 최적화된 `split-lapply-unsplit` 패턴을 사용하여 빠른
+  조회를 보장합니다.
+- **Input Validation**: Message the user if invalid KSIC codes are
+  provided and returns `NA` for those entries, ensuring robust and
+  predictable behavior.
+- **입력값 검증**: 유효하지 않은 KSIC 코드가 입력되면 사용자에게
+  메시지를 표시하고 해당 항목에 대해 `NA`를 반환하여, 안정적이고 예측
+  가능한 동작을 보장합니다.
 
 **Example / 사용 예시:**
 
@@ -210,15 +223,23 @@ ksic_group(c("26222", "99999", "58221"), digit = 2, name = TRUE)
 Extracts all child (lower-level) classification codes or names for a
 vector of KSIC codes. The default revision is 11.
 
-주어진 KSIC 코드 벡터에 대한 모든 하위 분류 코드 또는 이름을 추출합니다. 기본 차수는 11차입니다.
+주어진 KSIC 코드 벡터에 대한 모든 하위 분류 코드 또는 이름을 추출합니다.
+기본 차수는 11차입니다.
 
 **Key Features & Advantages / 주요 특징 및 장점:**
-- **Comprehensive Output**: Returns a `list` where each element contains a vector of child codes.
-- **포괄적인 출력**: 각 입력 코드에 해당하는 하위 코드 벡터를 담은 `리스트`를 반환합니다.
+
+- **Comprehensive Output**: Returns a `list` where each element contains
+  a vector of child codes.
+- **포괄적인 출력**: 각 입력 코드에 해당하는 하위 코드 벡터를 담은
+  `리스트`를 반환합니다.
 - **Flexible Input**: Handles vectors with mixed-digit codes.
 - **유연한 입력**: 자릿수가 다른 코드가 섞인 벡터도 처리합니다.
-- **Input Validation**: Message the user if invalid KSIC codes are provided and returns `NA` for those entries, ensuring robust and predictable behavior.
-- **입력값 검증**: 유효하지 않은 KSIC 코드가 입력되면 사용자에게 메시지를 표시하고 해당 항목에 대해 `NA`를 반환하여, 안정적이고 예측 가능한 동작을 보장합니다.
+- **Input Validation**: Message the user if invalid KSIC codes are
+  provided and returns `NA` for those entries, ensuring robust and
+  predictable behavior.
+- **입력값 검증**: 유효하지 않은 KSIC 코드가 입력되면 사용자에게
+  메시지를 표시하고 해당 항목에 대해 `NA`를 반환하여, 안정적이고 예측
+  가능한 동작을 보장합니다.
 
 **Example / 사용 예시:**
 
@@ -253,9 +274,8 @@ ksic_sub(c("26", "99999", "58"), digit = 4)
 
 ### `ksic_convert()`
 
-Converts KSIC codes from one revision to another.
-
-주어진 KSIC 코드를 한 차수에서 다른 차수로 변환합니다.
+Converts KSIC codes from one revision to another. 주어진 KSIC 코드를 한
+차수에서 다른 차수로 변환합니다.
 
 > **Important Note** When converting between revisions, industry
 > classifications may be merged, subdivided, or otherwise modified. This
@@ -264,7 +284,7 @@ Converts KSIC codes from one revision to another.
 > `ksic_convert` returns a data frame reflecting these complex
 > relationships. Users should carefully examine the results, especially
 > when a one-to-one match is not guaranteed.
->
+
 > **(중요) 차수 개정 시, 산업 분류는 통합, 분할 또는 변경될 수 있습니다.
 > 즉, 특정 코드가 다른 차수에서 여러 코드로 나뉘거나(1:N), 여러 코드가
 > 하나의 코드로 통합(N:1)될 수 있습니다. `ksic_convert` 함수는 이러한
@@ -349,6 +369,78 @@ ksic_search("software", C = 10, ignore.case = FALSE, digit = 5)
 #> 3472    C10
 ```
 
+### `ksic_find()`
+
+Retrieves KSIC information for a given vector of codes.
+
+주어진 코드 벡터에 대한 KSIC 정보를 조회합니다.
+
+**Key Features & Advantages / 주요 특징 및 장점:**
+
+- **Flexible Input**: Handles vectors with mixed-digit codes and
+  mixed-revision codes.
+- **유연한 입력**: 자릿수가 다른 코드와 여러 차수의 코드가 섞인 벡터도
+  처리할 수 있습니다.
+- **Input Validation**: Invalid codes are automatically excluded and
+  reported in a message.
+- **입력값 검증**: 유효하지 않은 코드는 자동으로 제외되며, 메시지를 통해
+  알려줍니다.
+- **Preserves Order**: The output data frame is sorted according to the
+  order of the valid input codes.
+- **순서 유지**: 출력 결과는 입력된 유효한 코드의 순서에 따라
+  정렬됩니다.
+
+**Example / 사용 예시:**
+
+``` r
+# Find information for a mix of codes
+ksic_find(c("A", "01", "58221", "99999"))
+#> Invalid codes excluded from search: 99999
+#>         cd                                nm
+#> 1        A         농업, 임업 및 어업(01~03)
+#> 2039     A         농업, 임업 및 어업(01~03)
+#> 4060     A      농업, 임업 및 어업 (01 ~ 03)
+#> 22      01                              농업
+#> 2060    01                              농업
+#> 4081    01                              농업
+#> 1442 58221  시스템 소프트웨어 개발 및 공급업
+#> 3471 58221  시스템 소프트웨어 개발 및 공급업
+#> 5436 58221 시스템  소프트웨어 개발 및 공급업
+#>                                      eng_nm digit ksic_C
+#> 1         Agriculture, forestry and fishing     1    C11
+#> 2039      Agriculture, forestry and fishing     1    C10
+#> 4060      Agriculture, forestry and fishing     1     C9
+#> 22                              Agriculture     2    C11
+#> 2060                            Agriculture     2    C10
+#> 4081                            Agriculture     2     C9
+#> 1442             System software publishing     5    C11
+#> 3471             System software publishing     5    C10
+#> 5436 System Software Development and Supply     5     C9
+
+# The result is ordered by the input vector
+ksic_find(c("58221", "01", "A"))
+#>         cd                                nm
+#> 1442 58221  시스템 소프트웨어 개발 및 공급업
+#> 3471 58221  시스템 소프트웨어 개발 및 공급업
+#> 5436 58221 시스템  소프트웨어 개발 및 공급업
+#> 22      01                              농업
+#> 2060    01                              농업
+#> 4081    01                              농업
+#> 1        A         농업, 임업 및 어업(01~03)
+#> 2039     A         농업, 임업 및 어업(01~03)
+#> 4060     A      농업, 임업 및 어업 (01 ~ 03)
+#>                                      eng_nm digit ksic_C
+#> 1442             System software publishing     5    C11
+#> 3471             System software publishing     5    C10
+#> 5436 System Software Development and Supply     5     C9
+#> 22                              Agriculture     2    C11
+#> 2060                            Agriculture     2    C10
+#> 4081                            Agriculture     2     C9
+#> 1         Agriculture, forestry and fishing     1    C11
+#> 2039      Agriculture, forestry and fishing     1    C10
+#> 4060      Agriculture, forestry and fishing     1     C9
+```
+
 ------------------------------------------------------------------------
 
 ## Practical Application / 활용 사례
@@ -358,7 +450,8 @@ ksic_search("software", C = 10, ignore.case = FALSE, digit = 5)
 You can easily use `ksic_group` to enrich your dataset by adding parent
 classifications.
 
-`ksic_group`을 사용해 상위 분류 정보를 추가하여 데이터셋을 쉽게 확장할 수 있습니다.
+`ksic_group`을 사용해 상위 분류 정보를 추가하여 데이터셋을 쉽게 확장할
+수 있습니다.
 
 ``` r
 my_data <- data.frame(
@@ -381,7 +474,9 @@ print(my_data)
 broader category. The list output can be easily converted into a tidy
 data frame for further analysis.
 
-`ksic_sub`는 특정 상위 분류에 속하는 모든 세부 산업을 찾아낼 때 유용합니다. 리스트 형태의 출력 결과는 추가 분석을 위해 데이터프레임으로 쉽게 변환할 수 있습니다.
+`ksic_sub`는 특정 상위 분류에 속하는 모든 세부 산업을 찾아낼 때
+유용합니다. 리스트 형태의 출력 결과는 추가 분석을 위해 데이터프레임으로
+쉽게 변환할 수 있습니다.
 
 ``` r
 # 분석할 중분류 코드 정의

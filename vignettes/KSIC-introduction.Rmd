@@ -1,20 +1,25 @@
 ---
-output: github_document
+title: "Introduction to KSIC"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to KSIC}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
-
-<!-- README.md is generated from README.Rmd. Please edit that file -->
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>",
-  fig.path = "man/figures/README-",
-  out.width = "100%"
+  comment = "#>"
 )
 ```
 
-# KSIC(Korea Standard Industrial Classification) <br> 한국표준산업분류
+### KSIC(Korea Standard Industrial Classification) <br> 한국표준산업분류
 ### *Jongjin Yun (2025-07-29)*
+
+```{r setup}
+library(KSIC)
+```
 
 This package provides tools to utilize the Korea Standard Industrial Classification (KSIC) in R.
 
